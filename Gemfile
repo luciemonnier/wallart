@@ -16,6 +16,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'devise'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
