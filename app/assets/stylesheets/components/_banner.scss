@@ -7,7 +7,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 50px;
 }
+
+.banner-bottom {
+  color: white;
+  text-align: center;
+  height: 70vh;
+  height: calc(100vh - 70px);
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+
 .banner h1 {
   font-size: 50px;
   font-weight: bold;
