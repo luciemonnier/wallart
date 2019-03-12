@@ -3,8 +3,8 @@ require 'pg_search'
 class Media < ApplicationRecord
   belongs_to :artist
   has_many :photos
-  # has_many :tags, through: :taggings
-  acts_as_taggable
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   include PgSearch
   pg_search_scope :search_by_title_and_description,
