@@ -1,3 +1,18 @@
-.btn-wall-full {
+.btn-wall {
+  color: white;
+  padding: 2px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #c70039;
+  display: flex;
+  justify-content: space-around;
+  width: 100px;
+}
 
+.btn-wall:hover {
+  opacity: 0.8;
+  background: #c70039;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s ease;
 }
