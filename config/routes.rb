@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'medias/index'
+  get 'medias/show'
   ActiveAdmin.routes(self)
   devise_for :users
   get '/', to: 'pages#home', as: 'home'
