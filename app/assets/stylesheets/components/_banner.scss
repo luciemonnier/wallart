@@ -1,8 +1,7 @@
 .banner {
   color: white;
   text-align: center;
-  height: 100vh;
-  height: calc(100vh - 70px);
+  height: calc(70vh - 70px);
   background-size: cover !important;
   display: flex;
   align-items: center;
@@ -13,13 +12,13 @@
 .banner-bottom {
   color: white;
   text-align: center;
-  height: 70vh;
-  height: calc(100vh - 70px);
+  height: 20vh;
   background-size: cover !important;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 

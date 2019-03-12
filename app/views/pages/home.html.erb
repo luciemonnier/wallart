@@ -8,31 +8,31 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'cadre-solo.jpg' %>);">
         <div class="card-description">
-        <h2>Photography</h2>
+        <h2>Photographie</h2>
         </div>
         <a class="card-link" href="#" ></a>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'video-2.jpg' %>);">
         <div class="card-description">
-        <h2>Video</h2>
+        <h2>Vidéo</h2>
         </div>
         <a class="card-link" href="#" ></a>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'algo.jpg' %>);">
         <div class="card-description">
-        <h2>Algorithms</h2>
+        <h2>Algorithmie</h2>
         </div>
         <a class="card-link" href="#" ></a>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'illustrations.jpg' %>);">
         <div class="card-description">
         <h2>Illustrations</h2>
@@ -44,7 +44,37 @@
 </div>
 
 
-<div class="banner-bottom" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 50%), url(<%= asset_path 'banner.jpg' %>);">
+<div class="banner-bottom" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 50%), url(<%= asset_path 'banner.jpg' %>);"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="brand-card">
+        <div><%= image_tag 'frame.png', class:'brand-img' %></div>
+        <h3>Découvrez notre technologie</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="brand-card">
+        <h3>Découvrez nos artistes</h3>
+        <div><%= image_tag 'search.png', class:'brand-img' %></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="brand-card">
+        <div><%= image_tag 'paint-palette.png', class:'brand-img' %></div>
+        <h3>Afficher vos oeuvres</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 
