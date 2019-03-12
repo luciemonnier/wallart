@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin: 27px;
 }
 .card-user {
   position: absolute;
@@ -45,3 +46,14 @@
 .card-link:hover {
   opacity: 0.1;
 }
+
+.brand-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 30px;
+  .brand-img {
+    height: 130px;
+  }
+}
+
