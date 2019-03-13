@@ -1,22 +1,35 @@
 <div class="container">
-
-  <div class="media-desc">
+  <div class="media-page">
+    <div>
+      <br>
+      <% @media.photos.each do |photo| %>
+          <div class="media-photo" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+          </div>
+        <% end %>
+    </div>
+  <div class="media-show">
     <h1><%= @media.title %></h1>
-    <% if @media.tags != [] %>
-      <p><%= @media.tags.first.name %></p>
-    <% end %>
+    <div class="artist">
+      <p>By:</p>
+      <p><%= @media.artist.name %></p>
+    </div>
+    <div class="media-desc">
+      <% if @media.tags != [] %>
+      <p>Tags:</p>
+      <% @media.tags.each do |tag| %>
+        <p>#<%= tag.name %></p>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="media-add-rental">
+      <%= simple_form_for @rental do |f| %>
+        <%= f.hidden_field :media_id %>
+        <%= f.hidden_field :user_id %>
+        <%= f.button :submit, '+', class: 'btn round-wall' %>
+      <% end %>
+    </div>
   </div>
-
-  <div class="media-photo">
-    <%= @media.photos.first.url %>
-  </div>
-
-<%= simple_form_for @rental do |f| %>
-  <%= f.hidden_field :media_id %>
-  <%= f.hidden_field :user_id %>
-  <%= f.button :submit, class: 'btn btn-wall' %>
-<% end %>
-
 </div>
+
 
 
