@@ -10,5 +10,6 @@ class MediasController < ApplicationController
 
   def show
     @media = Media.find(params[:id])
+    @rental = Rental.new(media: @media, user: current_user)
   end
 end
