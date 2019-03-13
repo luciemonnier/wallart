@@ -2,7 +2,7 @@
   <!-- Logo -->
   <div class='right-nav-bar'>
     <%= link_to home_path, class: "navbar-wagon-brand" do %>
-      <%= image_tag "logo.png", height: 50 %>
+      <%#= image_tag "logo.png", height: 50 %>
     <% end %>
 
     <div class="search__container">
@@ -29,7 +29,7 @@
           <% if current_user.photo? %>
             <%= cl_image_tag current_user.photo, class:'avatar dropdown-toggle', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ], id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
-            <%= image_tag 'emptyavatar.jpg', class:'avatar dropdown-toggle', id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%#= image_tag 'emptyavatar.jpg', class:'avatar dropdown-toggle', id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
