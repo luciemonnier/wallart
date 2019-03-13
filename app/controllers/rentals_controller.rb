@@ -13,6 +13,12 @@ class RentalsController < ApplicationController
     end
   end
 
+  def update
+    @rental = Rental.find(params[:id])
+    @rental.active = false
+    @rental.save
+  end
+
   private
 
   def params_rental
