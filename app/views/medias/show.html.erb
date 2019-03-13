@@ -14,21 +14,22 @@
       <p><%= @media.artist.name %></p>
     </div>
     <div class="media-desc">
+      <% if @media.tags != [] %>
       <p>Tags:</p>
       <% @media.tags.each do |tag| %>
         <p>#<%= tag.name %></p>
       <% end %>
+      <% end %>
     </div>
     <div class="media-add-rental">
       <%= simple_form_for @rental do |f| %>
-        <%#= f.hidden :media %>
-        <%#= f.hidden :user %>
+        <%= f.hidden_field :media_id %>
+        <%= f.hidden_field :user_id %>
         <%= f.button :submit, '+', class: 'btn round-wall' %>
       <% end %>
     </div>
-
   </div>
 </div>
-</div>
+
 
 
