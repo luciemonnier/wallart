@@ -17,6 +17,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @rental.active = false
     @rental.save
+    redirect_to rentals_path
   end
 
   private
