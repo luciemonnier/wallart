@@ -16,7 +16,7 @@
               <% end %>
             </div>
         <% end %>
-          <% (4 - @rentals.size).times do %>
+          <% (4 - @active_rentals.size).times do %>
             <div class="col-md-6 col-xs-12">
               <%= link_to medias_path do %>
                 <div class="empty-rental card-rental" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 50%), url('<%= image_path @images.sample %>'); background-size: cover;">
