@@ -6,7 +6,7 @@
         <div class="red-square"></div>
       </div>
         <div class="category-row">
-            <% Media.where(category: category).each do |media| %>
+            <% @medias.select{ |media| media.category == category}.each do |media| %>
               <%= link_to media_path(media) do %>
               <% media.photos.each do |photo| %>
                   <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">

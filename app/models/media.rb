@@ -9,7 +9,10 @@ class Media < ApplicationRecord
 
   include PgSearch
   pg_search_scope :search_by_title_category_and_description,
-    against: [:title, :description, :category],
+    against: [:title, :description ],
+    associated_against: {
+      category: [:name]
+    },
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
