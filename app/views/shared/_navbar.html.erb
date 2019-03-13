@@ -21,7 +21,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Ma collection", rentals_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "La collection Wall'art", medias_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -38,8 +38,8 @@
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+              <%= link_to rentals_path do %>
+                <i class="fas fa-paint-brush"></i>  <%= t(".rentals", default: "Ma Collection") %>
               <% end %>
             </li>
             <li>
