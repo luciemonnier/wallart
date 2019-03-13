@@ -12,6 +12,8 @@
   <div class="fiche-int">
     <div class="media-desc">
       <h1><%= @media.title %></h1>
+      <h2>Description:</h2>
+      <p><%= @media.description %></p>
       <% if @media.tags != [] %>
       <p>Tags:</p>
       <% @media.tags.each do |tag| %>
