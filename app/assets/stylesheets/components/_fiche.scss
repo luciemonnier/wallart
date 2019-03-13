@@ -1,0 +1,17 @@
+.fiche-ext {
+  border: 1px rgba(200, 200, 200, 0.9);
+  background-color: white;
+  border-radius: 4px;
+  padding: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.fiche-int {
+  border: 1px rgba(200, 200, 200, 0.9);
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}

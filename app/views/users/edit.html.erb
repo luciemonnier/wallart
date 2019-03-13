@@ -1,0 +1,34 @@
+<div class="container">
+<h1>Edit your profile</h1>
+<br><br>
+<%= simple_form_for @user do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "First Name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Last Name" }%>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <label class="btn btn-warning" value='Photo:'>
+      Add a photo
+      <span style="display:none;">
+        <%= f.input :photo, required: true, multiple: true, name: 'photo' %>
+      </span>
+    </label>
+    <%= f.input :photo_cache, as: :hidden %>
+    <br><br>
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, "Edit profile", class: 'btn btn-wall' %>
+  </div>
+<% end %>
+</div>

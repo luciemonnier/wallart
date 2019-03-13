@@ -8,12 +8,9 @@
 }
 
 .media-photo {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   height: 400px;
   width: 600px;
   border-radius: 1px;
-  transition: all .5s ease-in-out;
-  margin: 10px;
 }
 
 .media-page {
@@ -27,3 +24,10 @@
   right: -211px;
 }
 
+.media-desc {
+  padding-right: 57px;
+}
+
+.media-artist {
+  padding-left: 30px;
+}

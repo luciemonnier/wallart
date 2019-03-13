@@ -1,35 +1,41 @@
-<div class="container">
-  <div class="media-page">
-    <div>
-      <br>
-      <% @media.photos.each do |photo| %>
-          <div class="media-photo" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
-          </div>
-        <% end %>
-    </div>
-  <div class="media-show">
-    <h1><%= @media.title %></h1>
-    <div class="artist">
-      <p>By:</p>
-      <p><%= @media.artist.name %></p>
-    </div>
+<div class="container" id="profile-container">
+  <div class="fiche-ext">
+  <div class="media-photo">
+    <% @media.photos.each do |photo| %>
+        <div class="media-photo" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+        </div>
+    <% end %>
+  </div>
+
+  <br>
+
+  <div class="fiche-int">
     <div class="media-desc">
+      <h1><%= @media.title %></h1>
+      <h2>Description:</h2>
+      <p><%= @media.description %></p>
       <% if @media.tags != [] %>
       <p>Tags:</p>
       <% @media.tags.each do |tag| %>
         <p>#<%= tag.name %></p>
       <% end %>
       <% end %>
-    </div>
-    <div class="media-add-rental">
       <%= simple_form_for @rental do |f| %>
         <%= f.hidden_field :media_id %>
         <%= f.hidden_field :user_id %>
         <%= f.button :submit, '+', class: 'btn round-wall' %>
       <% end %>
     </div>
+    <div class="media-artist">
+      <%= cl_image_tag @media.artist.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+      <br>
+      <p>By: <%= @media.artist.name %></p>
+    </div>
+  </div>
   </div>
 </div>
+
+
 
 
 
