@@ -11,3 +11,18 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.categ-link {
+  color: #333333;
+}
+
+.categ-link:hover {
+  color: #333333;
+  opacity: 0.8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+  background-color: white;
+}

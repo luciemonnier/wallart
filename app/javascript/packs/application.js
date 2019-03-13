@@ -1,4 +1,6 @@
 import "bootstrap";
-import { loadDynamicBannerText } from '../plugins/typed';
+// import { loadDynamicBannerText } from '../plugins/typed';
+// import { slickCarousel } from '../plugins/carousel'
 
-loadDynamicBannerText();
+// slickCarousel();
+// loadDynamicBannerText();

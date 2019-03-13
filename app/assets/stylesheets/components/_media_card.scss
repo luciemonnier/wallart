@@ -1,0 +1,39 @@
+.media-cards {
+  margin-top: 30px;
+}
+
+.media-card {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  height: 200px;
+  border-radius: 2px;
+  transition: all .5s ease-in-out;
+  margin: 10px;
+}
+
+.media-card:first-child {
+  margin-left:0px;
+}
+
+.media-card:hover {
+  transform: scale(1.05);
+}
+
+.category-list {
+  border-bottom: rgba(0, 0, 0, 0.2)
+}
+
+.category-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  .red-square {
+    height: 8px;
+    width: 12px;
+    background-color: $brand-primary;
+    margin-top: -15px;
+    margin-left: -3px;
+  }
+}
+
+#categ-title {
+  margin-top: 20px;
+}
