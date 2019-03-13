@@ -9,10 +9,13 @@
 <!--                   <div class="full-rental-overlay">
                     <span class="text-center">
                       <h4><%= rental.media.title %></h4>
-                      <p><%= rental.media.artist.name %></p>
+                      <p><%#= rental.media.artist.name %></p>
                     </span>
                   </div> -->
-                  <%= link_to "-", rental_path(rental), method: :patch, class: 'btn btn-round-wall' %>
+                  <div class="rental-btn-group">
+                    <%= link_to "-", rental_path(rental), method: :patch, class: 'btn rental-round-wall' %>
+                    <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
+                  </div>
                 </div>
               <% end %>
             </div>

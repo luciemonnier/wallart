@@ -1,12 +1,11 @@
 .empty-rental {
-
+  display: flex;
+  justify-content: space-around;
+  align-items: center
 }
 
 .card-rental {
   height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   margin: 10px;
   border-radius: 4px;
   transition: all .2s;
@@ -15,7 +14,6 @@
 }
 
 .plus {
-  margin: auto;
   i {
     color: white;
     font-size: 80px;
