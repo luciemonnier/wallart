@@ -1,6 +1,6 @@
 class MediasController < ApplicationController
   def index
-    @categories = ["vidéo", "cinémagraphe", "photo numérique", "algorithme", "illustration", "peinture numérique"]
+    @categories = Category.all
     if params[:query].present?
       @medias = Media.search_by_title_category_and_description(params[:query])
     else

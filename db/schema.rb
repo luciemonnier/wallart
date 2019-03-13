@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_103847) do
+ActiveRecord::Schema.define(version: 2019_03_13_083444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,23 @@ ActiveRecord::Schema.define(version: 2019_03_12_103847) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "media", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.bigint "artist_id"
     t.integer "subscription_type"
-    t.string "category"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
     t.index ["artist_id"], name: "index_media_on_artist_id"
+    t.index ["category_id"], name: "index_media_on_category_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -100,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_103847) do
   end
 
   add_foreign_key "media", "artists"
+  add_foreign_key "media", "categories"
   add_foreign_key "photos", "media", column: "media_id"
   add_foreign_key "rentals", "media", column: "media_id"
   add_foreign_key "rentals", "users"
