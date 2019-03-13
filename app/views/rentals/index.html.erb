@@ -2,7 +2,7 @@
   <h4 id='categ-title'>Ma Collection</h4>
     <div class="rental-cards">
       <div class="row">
-        <% @rentals.each do |rental| %>
+        <% @active_rentals.each do |rental| %>
             <div class="col-md-6 col-xs-12">
               <%= link_to media_path(rental.media) do %>
                 <div class="full-rental card-rental" style="background-image: url('<%= image_path rental.media.photos.first.url %>'); background-size: cover;">
