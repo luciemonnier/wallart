@@ -1,0 +1,27 @@
+.empty-rental {
+  height: 350px;
+}
+
+.card-rental {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px;
+  border-radius: 4px;
+  transition: all .2s;
+  background-position: center;
+  background-size: cover;
+}
+
+.plus {
+  margin: auto;
+  i {
+    color: white;
+    font-size: 80px;
+    opacity: 0.8;
+  }
+}
+
+.card-rental:hover {
+  opacity: 0.6;
+}

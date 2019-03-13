@@ -1,13 +1,15 @@
-<div class="container">
-  <h4 id="categ-title">Découvres nos <strong><%= @category.name + 's' %></strong></h4>
-  <div class="row">
-    <% @medias.each do |media| %>
-      <% media.photos.each do |photo| %>
-        <div class="col-xs-12 col-md-4">
-          <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+<div class="wrapper white-wrapper">
+  <div class="container">
+    <h4 id="categ-title">Découvres nos <strong><%= @category.name + 's' %></strong></h4>
+    <div class="row">
+      <% @medias.each do |media| %>
+        <% media.photos.each do |photo| %>
+          <div class="col-xs-12 col-md-4">
+            <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
