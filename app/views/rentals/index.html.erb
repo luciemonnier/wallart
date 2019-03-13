@@ -4,8 +4,16 @@
       <div class="row">
         <% @rentals.each do |rental| %>
             <div class="col-md-6 col-xs-12">
-              <div class="full-rental card-rental" style="background-image: url('<%= image_path rental.media.photos.first.url %>'); background-size: cover;">
-              </div>
+              <%= link_to media_path(rental.media) do %>
+                <div class="full-rental card-rental" style="background-image: url('<%= image_path rental.media.photos.first.url %>'); background-size: cover;">
+                  <div class="full-rental-overlay">
+                    <span class="text-center">
+                      <h4><%= rental.media.title %></h4>
+                      <p><%= rental.media.artist.name %></p>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
             </div>
         <% end %>
           <% (4 - @rentals.size).times do %>
