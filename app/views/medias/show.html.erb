@@ -9,6 +9,12 @@
     <%= @media.photos.first.url %>
   </div>
 
+  <%= simple_form_for @rental do |f| %>
+  <%= f.hidden :media %>
+  <%= f.hidden :user %>
+  <%= f.button :submit, class: 'btn btn-wall' %>
+<% end %>
+
 </div>
 
 
