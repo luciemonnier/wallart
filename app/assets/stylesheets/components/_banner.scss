@@ -40,12 +40,12 @@
   .btn.btn-primary {
   background-color: $brand-primary;
   border-color: $brand-primary;
-  opacity: 0.8;
+  opacity: 1;
   }
   .btn.btn-primary:hover {
   background-color: $brand-primary;
   border-color: $brand-primary;
-  opacity: 1;
+  opacity: 0.8;
   }
 }
 
