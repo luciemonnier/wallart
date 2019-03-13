@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'categories/show'
   ActiveAdmin.routes(self)
   devise_for :users
   get '/', to: 'pages#home', as: 'home'
