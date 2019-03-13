@@ -9,6 +9,9 @@ gem 'rails', '5.2.2'
 gem 'redis'
 gem "pundit"
 gem 'pg_search'
+gem 'carrierwave', '~> 1.2'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.9.1'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
@@ -19,6 +22,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'jquery-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

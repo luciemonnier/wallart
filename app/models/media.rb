@@ -2,6 +2,7 @@ require 'pg_search'
 
 class Media < ApplicationRecord
   belongs_to :artist
+  belongs_to :category
   has_many :photos
   has_many :taggings
   has_many :tags, through: :taggings
@@ -12,4 +13,5 @@ class Media < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
+  mount_uploader :photo, PhotoUploader
 end

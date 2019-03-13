@@ -1,25 +1,21 @@
 <div class="container">
-  <h4>Découvrez notre collection</h4>
   <div class="media-cards">
     <% @categories.each do |category| %>
       <div class="category-title">
-        <h3><%= category.capitalize + "s" %></h3>
+        <h3><%= link_to category.name.capitalize + 's', category_path(category), class: 'categ-link' %></h3>
         <div class="red-square"></div>
       </div>
-          <% Media.where(category: category).each_slice(3).to_a.each do |array| %>
-            <div class="media-carousel-group">
-              <div class="row">
-                <% array.each do |media| %>
-                  <% media.photos.each do |photo| %>
-                    <div class="col-xs-12 col-md-4">
-                      <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover; background-position: center;">
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-          </div>
+        <div class="category-row">
+            <% Media.where(category: category).each do |media| %>
+              <%= link_to media_path(media) do %>
+              <% media.photos.each do |photo| %>
+                  <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+                  </div>
+              <% end %>
+            <% end %>
           <% end %>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

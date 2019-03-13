@@ -1,3 +1,3 @@
 ActiveAdmin.register Media do
-  permit_params :title, :description, :price, :artist_id, :subscription_type, :category
+  permit_params :title, :description, :category_id, :price, :artist_id, :subscription_type
 end

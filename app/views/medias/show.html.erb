@@ -1,2 +1,20 @@
-<h1>Medias#show</h1>
-<p>Find me in app/views/medias/show.html.erb</p>
+<div class="container">
+
+  <div class="media-desc">
+    <h1><%= @media.title %></h1>
+    <p><%= @media.tags.first.name %></p>
+  </div>
+
+  <div class="media-photo">
+    <%= @media.photos.first.url %>
+  </div>
+
+  <%= simple_form_for @rental do |f| %>
+  <%= f.hidden :media %>
+  <%= f.hidden :user %>
+  <%= f.button :submit, class: 'btn btn-wall' %>
+<% end %>
+
+</div>
+
+

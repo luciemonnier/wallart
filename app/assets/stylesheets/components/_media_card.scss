@@ -10,6 +10,10 @@
   margin: 10px;
 }
 
+.media-card:first-child {
+  margin-left:0px;
+}
+
 .media-card:hover {
   transform: scale(1.05);
 }
@@ -28,4 +32,8 @@
     margin-top: -15px;
     margin-left: -3px;
   }
+}
+
+#categ-title {
+  margin-top: 20px;
 }
