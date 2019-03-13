@@ -31,3 +31,46 @@
   background: #c70039;
   opacity: 0.8;
 }
+
+.rental-btn-group {
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.small-wall {
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+  background: #c70039;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  font-size: 14px;
+}
+
+.small-wall:hover {
+  color: white;
+  opacity: 0.8;
+
+}
+
+.rental-round-wall {
+  color: white;
+  border-radius: 50px;
+  background: #c70039;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.rental-round-wall:hover {
+  color: white;
+  opacity: 0.8;
+
+}
