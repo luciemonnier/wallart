@@ -1,9 +1,8 @@
 <div class="container">
-  <h4>Découvrez notre collection</h4>
   <div class="media-cards">
     <% @categories.each do |category| %>
       <div class="category-title">
-        <h3><%= category.capitalize + "s" %></h3>
+        <h3><%= link_to category.name.capitalize + 's', '#', class: 'categ-link' %></h3>
         <div class="red-square"></div>
       </div>
         <div class="category-row">
