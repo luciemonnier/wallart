@@ -6,6 +6,13 @@ class MediasController < ApplicationController
     else
       @medias = Media.all
     end
+    @medias = @medias.to_a
+    Media.all.each do |media|
+      if media.tags.any? { |tag| tag.name.match(/#{params[:query].downcase}/) }
+        @medias << media
+      end
+    end
+    return @medias
   end
 
   def show
