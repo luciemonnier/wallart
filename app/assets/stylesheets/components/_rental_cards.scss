@@ -1,8 +1,9 @@
 .empty-rental {
-  height: 350px;
+
 }
 
 .card-rental {
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -22,6 +23,11 @@
   }
 }
 
-.card-rental:hover {
+.empty-rental:hover {
   opacity: 0.6;
+}
+
+.ful-rental:hover {
+  color: white;
+  opacity: 0.9;
 }
