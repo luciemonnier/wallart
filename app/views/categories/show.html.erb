@@ -4,8 +4,10 @@
     <% @medias.each do |media| %>
       <% media.photos.each do |photo| %>
         <div class="col-xs-12 col-md-4">
+          <%= link_to media_path(media) do %>
           <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
           </div>
+          <% end %>
         </div>
       <% end %>
     <% end %>
