@@ -6,6 +6,7 @@ class Media < ApplicationRecord
   belongs_to :subscription_type
   has_many :photos
   has_many :taggings
+  belongs_to :subscription_type
   has_many :tags, through: :taggings
 
   include PgSearch
