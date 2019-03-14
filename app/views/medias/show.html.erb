@@ -21,14 +21,20 @@
         <% end %>
       <% end %>
       <div class="buttons-list">
-        <% if current_user.rentals.where(active: true).size < 4 && current_user.rentals.where(media: @media, active: true) == [] %>
+        <% if current_user.rentals.where(media: @media, active: true) != [] %>
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre fait déjà partie de votre collection!">
+            <button class="btn round-wall" style="pointer-events: none;" type="button" disabled>+</button>
+          </span>
+        <% elsif current_user.rentals.where(active: true).size >= 4 %>
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre collection est pleine">
+            <button class="btn round-wall" style="pointer-events: none;" type="button" disabled>+</button>
+          </span>
+        <% else %>
           <%= simple_form_for @rental do |f| %>
             <%= f.hidden_field :media_id %>
             <%= f.hidden_field :user_id %>
             <%= f.button :submit, '+', class: 'btn round-wall' %>
           <% end %>
-        <% else%>
-          <button disabled class='btn round-wall'>+</button>
         <% end %>
         <% if current_user.rentals.where(media: @media, active: true) != [] %>
           <%= link_to "-", rental_path(current_user.rentals.where(media: @media, active: true).first), method: :patch, class: 'btn round-wall' %>
