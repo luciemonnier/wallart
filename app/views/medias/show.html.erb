@@ -15,16 +15,26 @@
       <h2>Description:</h2>
       <p><%= @media.description %></p>
       <% if @media.tags != [] %>
-      <p>Tags:</p>
-      <% @media.tags.each do |tag| %>
-        <p>#<%= tag.name %></p>
+        <p>Tags:</p>
+        <% @media.tags.each do |tag| %>
+          <p>#<%= tag.name %></p>
+        <% end %>
       <% end %>
-      <% end %>
-      <%= simple_form_for @rental do |f| %>
-        <%= f.hidden_field :media_id %>
-        <%= f.hidden_field :user_id %>
-        <%= f.button :submit, '+', class: 'btn round-wall' %>
-      <% end %>
+      <div class="buttons-list">
+        <% if current_user.rentals.where(active: true).size < 4 %>
+          <%= simple_form_for @rental do |f| %>
+            <%= f.hidden_field :media_id %>
+            <%= f.hidden_field :user_id %>
+            <%= f.button :submit, '+', class: 'btn round-wall' %>
+          <% end %>
+        <% else%>
+          <button disabled class='btn round-wall'>+</button>
+        <% end %>
+        <% if current_user.rentals.where(media: @media, active: true) != [] %>
+          <%= link_to "-", rental_path(current_user.rentals.where(media: @media, active: true).first), method: :patch, class: 'btn round-wall' %>
+          <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
+        <% end %>
+      </div>
     </div>
     <div class="media-artist">
       <%= cl_image_tag @media.artist.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
