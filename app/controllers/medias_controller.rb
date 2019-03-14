@@ -12,8 +12,8 @@ class MediasController < ApplicationController
     else
       @medias_all = policy_scope(Media)
     end
-    @medias = @medias_all.select { |media| media.subscription_type <= current_user.subscription_type }
-    @medias_unavailable = @medias_all.select { |media| media.subscription_type > current_user.subscription_type }
+    @medias = @medias_all.select { |media| media.subscription_type.level <= current_user.subscription_type.level }
+    @medias_unavailable = @medias_all.select { |media| media.subscription_type.level == current_user.subscription_type.level + 1 }
     @next_subscription = next_subscription(current_user.subscription_type)
   end
 
@@ -26,13 +26,10 @@ class MediasController < ApplicationController
   private
 
   def next_subscription(subscription_type)
-    case subscription_type
-    when 0
-      return 'standard'
-    when 1
-      return 'advanced'
-    when 2
-      return 'premium'
+    if subscription_type.type < 2
+      SubscriptionType.where(level: subscription_type.level + 1).first.name
+    else
+      subscription_type.name
     end
   end
 end

@@ -11,24 +11,24 @@
           <h1>Mon Profil</h1>
           <br>
           <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-          <% if @user.subscription_type == nil %>
+          <% if @user.subscription_type.level == 0 %>
             <p>Vous n'avez pas d'abonnement pour le moment.</p>
             <div class="">
               <div class="subscription-types">
                 <div class="subscription-1">
-                  <span>
+                  <span class="text-center">
                   <p><strong>Standard</strong></p>
                   <p>4.99€/mois</p>
                   </span>
                 </div>
                 <div class="subscription-2">
-                  <span>
+                  <span class="text-center">
                   <p><strong>Advanced</strong></p>
                   <p>10.99€/mois</p>
                   </span>
                 </div>
                 <div class="subscription-3">
-                  <span>
+                  <span class="text-center">
                   <p><strong>Premium</strong></p>
                   <p>30.99€/mois</p>
                   </span>
@@ -38,9 +38,9 @@
           <% else %>
             <p>Subscription Type :
               <div class="subscription-3">
-                  <span>
-                  <p><strong><%= @user.subscription_type %></p></strong></p>
-                  <p>30.99€/mois</p>
+                  <span class="text-center">
+                  <p><strong><%= @user.subscription_type.name %></p></strong></p>
+                  <p><%= @user.subscription_type.price_cents %>€/mois</p>
                   </span>
               </div>
           <% end %>

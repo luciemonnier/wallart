@@ -33,7 +33,7 @@
     </div>
   </div>
 </div>
-<% if current_user.subscription_type < 3 %>
+<% if current_user.subscription_type.level < 3 %>
   <div class="wrapper red-wrapper">
     <div class="container display-unavailable-medias">
       <h4>
@@ -43,7 +43,7 @@
         <% @medias_unavailable.each do |media| %>
           <% media.photos.each do |photo| %>
             <div class="media-padding">
-              <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+              <div class="unavailable-media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
               </div>
             </div>
           <% end %>
