@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_083444) do
+ActiveRecord::Schema.define(version: 2019_03_14_143718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,13 +47,14 @@ ActiveRecord::Schema.define(version: 2019_03_13_083444) do
     t.string "title"
     t.text "description"
     t.bigint "artist_id"
-    t.integer "subscription_type"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.bigint "subscription_type_id"
     t.index ["artist_id"], name: "index_media_on_artist_id"
     t.index ["category_id"], name: "index_media_on_category_id"
+    t.index ["subscription_type_id"], name: "index_media_on_subscription_type_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -72,6 +73,13 @@ ActiveRecord::Schema.define(version: 2019_03_13_083444) do
     t.datetime "updated_at", null: false
     t.index ["media_id"], name: "index_rentals_on_media_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
+  end
+
+  create_table "subscription_types", force: :cascade do |t|
+    t.integer "type"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -101,16 +109,19 @@ ActiveRecord::Schema.define(version: 2019_03_13_083444) do
     t.string "first_name"
     t.string "last_name"
     t.string "photo"
-    t.integer "subscription_type"
+    t.bigint "subscription_type_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["subscription_type_id"], name: "index_users_on_subscription_type_id"
   end
 
   add_foreign_key "media", "artists"
   add_foreign_key "media", "categories"
+  add_foreign_key "media", "subscription_types"
   add_foreign_key "photos", "media", column: "media_id"
   add_foreign_key "rentals", "media", column: "media_id"
   add_foreign_key "rentals", "users"
   add_foreign_key "taggings", "media", column: "media_id"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "users", "subscription_types"
 end
