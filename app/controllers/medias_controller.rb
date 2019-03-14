@@ -26,6 +26,10 @@ class MediasController < ApplicationController
   private
 
   def next_subscription(subscription_type)
-    SubscriptionType.where(level: subscription_type.level + 1).first.name
+    if subscription_type.type < 2
+      SubscriptionType.where(level: subscription_type.level + 1).first.name
+    else
+      subscription_type.name
+    end
   end
 end
