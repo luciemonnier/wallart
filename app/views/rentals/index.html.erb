@@ -4,20 +4,14 @@
       <div class="row">
         <% @active_rentals.each do |rental| %>
             <div class="col-md-6 col-xs-12">
-              <%= link_to media_path(rental.media) do %>
+              <%= link_to media_path(rental.media_id) do %>
                 <div class="full-rental card-rental" style="background-image: url('<%= image_path rental.media.photos.first.url %>'); background-size: cover;">
-<!--                   <div class="full-rental-overlay">
-                    <span class="text-center">
-                      <h4><%= rental.media.title %></h4>
-                      <p><%#= rental.media.artist.name %></p>
-                    </span>
-                  </div> -->
-                  <div class="rental-btn-group">
-                    <%= link_to "-", rental_path(rental), method: :patch, class: 'btn rental-round-wall' %>
-                    <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
-                  </div>
                 </div>
               <% end %>
+                <div class="rental-btn-group">
+                  <%= link_to "-", rental_path(rental), method: :patch, class: 'btn rental-round-wall' %>
+                  <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
+                </div>
             </div>
         <% end %>
           <% (4 - @active_rentals.size).times do %>
