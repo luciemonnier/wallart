@@ -1,0 +1,14 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 50%), url(<%= asset_path 'banner.jpg' %>);">
+  <div class="banner-content">
+    <h1>Le Smart Art s'installe chez Vous </h1>
+    <p>Faites décorer votre <span id="banner-typed-text"></span> par nos artistes </p>
+    <%= link_to "Inscrivez-vous", new_user_registration_path, class:'btn btn-lg btn-primary' %>
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="video-wallart text-center">
+    <%= video_tag 'https://res.cloudinary.com/dqkmjxwwb/video/upload/v1552560467/Wallart.mp4', width: 700, controls: true %>
+  </div>
+</div>
+
