@@ -1,0 +1,19 @@
+.display-unavailable-medias {
+  h4 {
+    color: white;
+    margin-top: 15px;
+    a {
+      color: white;
+    }
+    a:hover {
+      opacity: 0.7;
+      color: white;
+    }
+  }
+
+}
+
+.red-wrapper {
+  background-color: $brand-primary;
+  padding-top: 10px;
+}
