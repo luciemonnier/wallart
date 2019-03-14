@@ -27,6 +27,15 @@ body {
   background-color: white;
 }
 
+a{
+  color: grey;
+  text-decoration: none;
+}
 a:hover {
   text-decoration: none;
+  opacity: 0.7;
+}
+
+.red-wrapper {
+  background-color: $brand-primary;
 }

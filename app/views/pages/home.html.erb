@@ -1,49 +1,5 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 50%), url(<%= asset_path 'background3.jpg' %>);">
-  <div class="banner-content">
-    <h1>Le Smart Art s'installe chez Vous </h1>
-    <p>Faites décorer votre <span id="banner-typed-text"></span> par nos artistes </p>
-    <%= link_to "Découvrir", medias_path, class:'btn btn-lg btn-primary' %>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <%= link_to category_path(1) do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'cadresolo.jpg' %>);">
-        <div class="card-description">
-        <h2>Photographie</h2>
-        </div>
-      </div>
-      <% end %>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <%= link_to category_path(2) do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'video.jpg' %>);">
-        <div class="card-description">
-        <h2>Vidéo</h2>
-        </div>
-      </div>
-      <% end %>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <%= link_to category_path(3) do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'algo.jpg' %>);">
-        <div class="card-description">
-        <h2>Algorithmie</h2>
-        </div>
-      </div>
-      <% end %>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <%= link_to category_path(4) do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'illustrations.jpg' %>);">
-        <div class="card-description">
-        <h2>Illustrations</h2>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-
+<% if current_user == nil %>
+  <%= render 'shared/home_user_not_logged' %>
+<% else %>
+  <%= render 'shared/home_user_logged' %>
+<% end %>
