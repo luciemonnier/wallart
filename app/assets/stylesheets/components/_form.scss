@@ -1,9 +1,55 @@
-.sign-up-form {
-  margin-top: 50px;
+.sign-in-form {
+  margin-top: 70px;
   background-color: white;
   padding: 20px;
   border-radius: 4px;
+  opacity: 0.9;
   .btn {
     color: white;
+    padding: 2px;
+    border-radius: 4px;
+    font-weight: bold;
+    background: #c70039;
+    display: flex;
+    justify-content: space-around;
+    width: 103px;
   }
+}
+
+.sign-up-form {
+  margin-top: 70px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  opacity: 0.9;
+  width: 500px;
+  .btn {
+    color: white;
+    padding: 2px;
+    border-radius: 4px;
+    font-weight: bold;
+    background: #c70039;
+    display: flex;
+    justify-content: space-around;
+    width: 103px;
+  }
+  .btn-photo {
+    color: #c70039;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #c70039;
+    display: flex;
+    justify-content: space-around;
+    width: 103px;
+  }
+  .btn-photo:hover {
+    color: #c70039;
+    border: 1px solid #c70039;
+    opacity: 0.8;
+  }
+}
+
+.form-banner {
+  background-size: cover;
+  height: 150vh;
 }
