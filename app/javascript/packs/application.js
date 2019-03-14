@@ -1,5 +1,6 @@
 import "bootstrap";
 import { loadDynamicBannerText } from '../plugins/typed';
+import { initTooltips } from '../plugins/tooltips'
 import { slickCarousel } from '../plugins/carousel'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -13,3 +14,5 @@ const banner = document.getElementById('banner-typed-text');
 if (banner) {
   loadDynamicBannerText();
 }
+
+initTooltips()
