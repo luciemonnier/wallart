@@ -21,7 +21,7 @@
         <% end %>
       <% end %>
       <div class="buttons-list">
-        <% if current_user.rentals.where(active: true).size < 4 %>
+        <% if current_user.rentals.where(active: true).size < 4 && current_user.rentals.where(media: @media, active: true) == [] %>
           <%= simple_form_for @rental do |f| %>
             <%= f.hidden_field :media_id %>
             <%= f.hidden_field :user_id %>
