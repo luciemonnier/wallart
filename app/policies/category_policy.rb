@@ -12,6 +12,6 @@ class CategoryPolicy < ApplicationPolicy
   private
 
   def user_admin_or_logged?
-    user.admin == true || record.user == user
+    user.admin == true || user != nil
   end
 end
