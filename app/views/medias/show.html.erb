@@ -1,56 +1,63 @@
+<div class="wrapper grey-wrapper">
 <div class="container" id="profile-container">
   <div class="fiche-ext">
-  <div class="media-photo">
+  <div class="">
     <% @media.photos.each do |photo| %>
         <div class="media-photo" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
         </div>
+    <% end %>
+    <br><br>
+    <h1><%= @media.title %></h1>
+    <h2>Description:</h2>
+    <p><%= @media.description %></p>
+    <% if @media.tags != [] %>
+      <p>Tags:</p>
+      <% @media.tags.each do |tag| %>
+        <p>#<%= tag.name %></p>
+      <% end %>
     <% end %>
   </div>
 
   <br>
 
   <div class="fiche-int">
-    <div class="media-desc">
-      <h1><%= @media.title %></h1>
-      <h2>Description:</h2>
-      <p><%= @media.description %></p>
-      <% if @media.tags != [] %>
-        <p>Tags:</p>
-        <% @media.tags.each do |tag| %>
-          <p>#<%= tag.name %></p>
-        <% end %>
-      <% end %>
-      <div class="buttons-list">
+    <div class="media-artist-photo">
+       <%= cl_image_tag @media.artist.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+       <p>By: <%= @media.artist.name %></p>
+       <p>Description: <%= @media.artist.description %> </p>
+     </div>
+    <div class="media-artist">
+    <div class="buttons-list">
+      <span>
         <% if current_user.rentals.where(media: @media, active: true) != [] %>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre fait déjà partie de votre collection!">
-            <button class="btn round-wall" style="pointer-events: none;" type="button" disabled>+</button>
+            <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
           </span>
         <% elsif current_user.rentals.where(active: true).size >= 4 %>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre collection est pleine">
-            <button class="btn round-wall" style="pointer-events: none;" type="button" disabled>+</button>
+            <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
           </span>
         <% else %>
           <%= simple_form_for @rental do |f| %>
             <%= f.hidden_field :media_id %>
             <%= f.hidden_field :user_id %>
-            <%= f.button :submit, '+', class: 'btn round-wall' %>
+            <%= f.button :submit, 'Ajouter', class: 'btn small-wall' %>
           <% end %>
         <% end %>
         <% if current_user.rentals.where(media: @media, active: true) != [] %>
-          <%= link_to "-", rental_path(current_user.rentals.where(media: @media, active: true).first), method: :patch, class: 'btn round-wall' %>
+        <span>
+          <%= link_to "Retirer", rental_path(current_user.rentals.where(media: @media, active: true).first), method: :patch, class: 'btn small-wall' %>
           <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
+        </span>
         <% end %>
+      </span>
       </div>
+
+     </div>
     </div>
-    <div class="media-artist">
-      <%= cl_image_tag @media.artist.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
-      <br>
-      <p>By: <%= @media.artist.name %></p>
-    </div>
-  </div>
   </div>
 </div>
-
+</div>
 
 
 
