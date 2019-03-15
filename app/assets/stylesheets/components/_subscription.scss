@@ -57,3 +57,18 @@
 .subscription-3:hover {
     opacity: 0.8;
   }
+
+.subscription-4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  height: 150px;
+  width: 150px;
+  border: 1px solid #df4d19;
+  background-color: white;
+  color: #df4d19;
+  border-radius: 3px;
+  margin: 15px 15px 15px 0px;
+  box-shadow: 1px 2px rgba(0, 0, 0, 0.1)
+}
