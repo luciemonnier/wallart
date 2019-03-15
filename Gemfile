@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.5.3'
 
+gem 'faker'
 gem 'bootsnap', require: false
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
@@ -12,7 +13,6 @@ gem 'pg_search'
 gem 'carrierwave', '~> 1.2'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.9.1'
-gem "pundit"
 gem 'money-rails'
 
 gem 'autoprefixer-rails'
