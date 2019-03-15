@@ -18,21 +18,17 @@
           <h3><%= link_to category.name.capitalize + 's', category_path(category), class: 'categ-link' %></h3>
           <div class="red-square"></div>
         </div>
-          <div class="category-row">
-              <% @medias.select{ |media| media.category == category}.each do |media| %>
-                <%= link_to media_path(media) do %>
-                <% media.photos.each do |photo| %>
-                    <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
-                    </div>
-                <% end %>
-              <% end %>
+        <div class="category-row">
+          <% @medias.select{ |media| media.category == category}.each do |media| %>
+            <%= link_to media_path(media) do %>
+              <%= cl_image_tag media.photos.first.url, quality: 5, width: 330, crop: :fill, class: 'media-card' %>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
-</div>
+<% end %>
 <% if current_user.subscription_type.level < 3 %>
   <div class="wrapper red-wrapper">
     <div class="container display-unavailable-medias">
@@ -41,12 +37,9 @@
       </h4>
       <div class="category-row">
         <% @medias_unavailable.each do |media| %>
-          <% media.photos.each do |photo| %>
-            <div class="media-padding">
-              <div class="unavailable-media-card" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
-              </div>
-            </div>
-          <% end %>
+          <div class="media-padding">
+            <%= cl_image_tag media.photos.first.url, quality: 5, width: 330, crop: :fill, class: 'media-card' %>
+          </div>
         <% end %>
       </div>
     </div>
