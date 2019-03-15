@@ -18,5 +18,5 @@ class Media < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
-  mount_uploader :photo, PhotoUploader
+  #mount_uploader :photo, PhotoUploader
 end

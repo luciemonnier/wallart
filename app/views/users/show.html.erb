@@ -11,7 +11,7 @@
           <h1>Mon Profil</h1>
           <br>
           <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-          <% if @user.subscription_type.level == 0 %>
+          <% if @user.subscription_type.level == nil %>
             <p>Vous n'avez pas d'abonnement pour le moment.</p>
             <div class="">
               <div class="subscription-types">
