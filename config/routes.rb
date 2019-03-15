@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources 'rentals', only: [:create, :index, :update]
   resources 'artists', only: [:show]
   resources 'users', only: [:show, :edit, :update] do
-    resources 'uploads', only: [:new, :create]
+    resources 'uploads', only: [:new, :create, :index]
   end
   resources 'uploads', only: [:destroy]
   resources 'categories', only: [:show]

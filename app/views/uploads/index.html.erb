@@ -1,0 +1,31 @@
+<div class="wrapper white-wrapper">
+  <div class="container">
+    <h4 id="categ-title">Mes Photos</strong></h4>
+    <% if @uploads != [] %>
+      <div class="row">
+        <% @uploads.each do |upload| %>
+          <div class="col-xs-12 col-md-4">
+            <div class="upload-card">
+              <div class="upload-card-top" style="background-image: url('<%= cl_image_path upload.photo %>'); background-size: cover;">
+              </div>
+              <div class="upload-card-bottom">
+                <p><strong><%= upload.name.capitalize %></strong></p>
+                <div class="upload-link-list">
+                  <%= link_to upload_path(upload), method: :delete, class: 'upload-link' do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                  <%= link_to '#', class: 'upload-link' do %>
+                    <i class="fas fa-tv"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+    <p>Vous n'avez pas encore téléchargé vos propres photos</p>
+    <% end %>
+    <%= link_to 'Télécharger une photo', new_user_upload_path(current_user), class: 'btn btn-wall' %>
+  </div>
+</div>

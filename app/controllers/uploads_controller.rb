@@ -25,6 +25,10 @@ class UploadsController < ApplicationController
     redirect_to rentals_path
   end
 
+  def index
+    @uploads = policy_scope(Upload)
+  end
+
   private
 
   def upload_params
