@@ -1,0 +1,43 @@
+.upload-card {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  height: 230px;
+  border-radius: 2px;
+  transition: all .5s ease-in-out;
+  margin: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.upload-cards {
+  margin-top: 30px;
+}
+
+.upload-card-bottom {
+  p {
+    margin: 0px;
+  }
+  padding: 8px;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upload-card-top {
+  height: 80%;
+}
+
+.upload-link-list {
+  width: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upload-link {
+  color: $brand-primary;
+}
+
+.upload-link:hover {
+  opacity: 0.7;
+}

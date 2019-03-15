@@ -2,6 +2,7 @@ class RentalsController < ApplicationController
   def index
     @active_rentals = policy_scope(Rental).where(active: true)
     @former_rentals = policy_scope(Rental).where(active: false)
+    @uploads = Upload.where(user: current_user)
   end
 
   def create

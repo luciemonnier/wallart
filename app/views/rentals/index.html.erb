@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 id='categ-title'>Ma Collection</h4>
+  <h4 class='categ-title'>Ma Collection</h4>
     <div class="rental-cards">
       <div class="row">
         <% @active_rentals.each do |rental| %>
@@ -26,14 +26,47 @@
             </div>
           <% end %>
     </div>
-  </div>
-  <h4 id='categ-title'>Mes précédentes locations</h4>
-  <div class="category-row">
-              <% @former_rentals.each do |rental| %>
-                <%= link_to media_path(rental.media) do %>
-                  <div class="media-card" style="background-image: url('<%= image_path rental.media.photos.first.url, crop: :fill;%>'); background-size: cover;">
+    <div class="user-uploads">
+      <h4 class='categ-title'>Mes photos  <%= link_to 'Voir tout', user_uploads_path(current_user), id: 'link-to-uploads' %></h4>
+      <% if @uploads != [] %>
+        <div class="upload-cards">
+          <div class="row">
+            <% @uploads.last(3).each do |upload| %>
+              <div class="media-padding">
+                <div class="col-sm-6 col-md-4">
+                  <div class="upload-card">
+                    <div class="upload-card-top" style="background-image: url('<%= cl_image_path upload.photo %>'); background-size: cover;">
+                    </div>
+                    <div class="upload-card-bottom">
+                      <p><strong><%= upload.name.capitalize %></strong></p>
+                      <div class="upload-link-list">
+                        <%= link_to upload_path(upload), method: :delete, class: 'upload-link' do %>
+                          <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                        <%= link_to '#', class: 'upload-link' do %>
+                          <i class="fas fa-tv"></i>
+                        <% end %>
+                      </div>
+                    </div>
                   </div>
-              <% end %>
+                </div>
+              </div>
             <% end %>
           </div>
+        </div>
+      <% end %>
+      <%= link_to 'Télécharger une photo', new_user_upload_path(current_user), class: 'btn btn-wall' %>
+    </div>
+  </div>
+  <% if current_user.rentals.where(active: false) != [] %>
+    <h4 id='categ-title'>Mes précédentes locations</h4>
+    <div class="category-row">
+      <% @former_rentals.each do |rental| %>
+        <%= link_to media_path(rental.media) do %>
+          <div class="media-card" style="background-image: url('<%= image_path rental.media.photos.first.url, crop: :fill;%>'); background-size: cover;">
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
