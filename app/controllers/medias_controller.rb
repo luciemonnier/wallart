@@ -1,4 +1,5 @@
 class MediasController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   def index
     @categories = Category.all
     if params[:query].present?
@@ -26,7 +27,7 @@ class MediasController < ApplicationController
   private
 
   def next_subscription(subscription_type)
-    if subscription_type.type < 2
+    if subscription_type.level < 2
       SubscriptionType.where(level: subscription_type.level + 1).first.name
     else
       subscription_type.name

@@ -10,7 +10,7 @@ class MediaPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user_logged_in?
   end
 
   def new?
@@ -41,6 +41,10 @@ class MediaPolicy < ApplicationPolicy
 
   def user_admin?
     user.admin == true
+  end
+
+  def user_logged_in?
+    user != nil
   end
 end
 
