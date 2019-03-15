@@ -1,20 +1,20 @@
-class UserPolicy < ApplicationPolicy
+class UploadPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.where(user: user)
     end
   end
 
-  def show?
-    true
+  def new?
+    user_admin_or_logged?
   end
 
-  def edit?
-    true
+  def create?
+    new?
   end
 
-  def update?
-    true
+  def destroy?
+    user_admin_or_logged?
   end
 
   private

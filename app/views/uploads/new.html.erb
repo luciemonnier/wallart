@@ -1,0 +1,39 @@
+<div class="form-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 50%), url(<%= asset_path 'background3.jpg' %>);">
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="sign-up-form">
+        <h1>Télécharger une photo</h1>
+        <br>
+        <%= simple_form_for [@user, @upload] do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :name,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "Name" }%>
+            <%= f.input :description,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "Description" }%>
+            <label class="btn-photo" value='Photo:'>
+              Ajouter une Photo
+              <span style="display:none;">
+                <%= f.input :photo, required: true, multiple: true, name: 'photo' %>
+              </span>
+            </label>
+            <%= f.input :photo_cache, as: :hidden %>
+            <br>
+          </div>
+          <div class="form-actions text-center">
+            <%= f.button :submit, "Télécharger", class: 'btn btn-wall' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
