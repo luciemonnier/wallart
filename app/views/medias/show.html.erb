@@ -12,7 +12,7 @@
     <h4><strong>Description:</strong></h4>
     <p><%= @media.description %></p>
     <% if @media.tags != [] %>
-      <p>Tags:</p>
+      <h4 class="tags"><strong>Tags:</strong></h4>
       <div class="row">
         <% @media.tags.each do |tag| %>
         <div class="col-xs-3 col-sm-3">
@@ -27,7 +27,7 @@
     <div class="fiche-int">
       <div>
         <h4><strong>Un peu plus sur <%= @media.artist.name %></strong></h4>
-        <p><%= @media.artist.description.truncate(50, separator:" ") %> </p>
+        <p class="artist-desc"><%= @media.artist.description.truncate(700, separator:" ") %> </p>
       </div>
       <div>
         <%= cl_image_tag @media.artist.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
@@ -37,7 +37,7 @@
     <div class="buttons-list">
       <span>
         <br>
-        <h4><strong>Vos options</strong></h4>
+        <h4 class="options-title"><strong>Vos options</strong></h4>
         <% if current_user.rentals.where(media: @media, active: true) != [] %>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre fait déjà partie de votre collection!">
             <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
