@@ -1,6 +1,5 @@
 class RentalsController < ApplicationController
   def index
-    @images = ['rental1.jpg', 'rental2.jpg', 'rental3.jpg', 'rental4.jpg', 'rental5.jpg', 'rental6.jpg', 'rental7.jpg', ]
     @active_rentals = policy_scope(Rental).where(active: true)
     @former_rentals = policy_scope(Rental).where(active: false)
   end
