@@ -26,8 +26,8 @@ puts '...'
 medias = Media.all
 urls = ['https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491461/kfu5w0okaee1wjeahb5m.jpg',
         'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491373/nrmxjcakoxmtsrym3m9g.jpg',
-        #'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491176/k9qdv08rk4zfkftq0bfs.jpg',
-        #'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552490740/zjazgxmhqsjf7xclgce3.jpg',
+        'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491176/k9qdv08rk4zfkftq0bfs.jpg',
+        'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552490740/zjazgxmhqsjf7xclgce3.jpg',
         'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552472145/cassius-boi-426294-unsplash.jpg',
         'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552472145/cassius-boi-426294-unsplash.jpg',
         'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552642998/roman-kraft-1437483-unsplash.jpg',
@@ -82,8 +82,8 @@ urls = ['https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491461/kfu5w0oka
 (0..100).to_a.each do |number|
   photo = Photo.new(
     media: medias[number],
+    url: urls.sample
   )
-  photo.remote_url_url = urls.sample
   photo.save
 end
 
