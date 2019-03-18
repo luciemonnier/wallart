@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   end
   resources 'uploads', only: [:destroy]
   resources 'categories', only: [:show]
+  resources 'subscription_types', only: [:show, :update]
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: [:new, :create]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

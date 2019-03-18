@@ -20,6 +20,6 @@ class UploadPolicy < ApplicationPolicy
   private
 
   def user_admin_or_logged?
-    user.admin == true || record.user == user
+    user.admin == true || current_user != nil
   end
 end

@@ -1,0 +1,22 @@
+<div class="order-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 50%), url(<%= asset_path 'background3.jpg' %>);">
+
+  <div class="container">
+    <div class="order-card">
+      <h1><%= @subscription_type.name.capitalize %></h1>
+      <br>
+      <h4>Price: <%= @subscription_type.price %>€/mois</h4>
+      <p>Profitez de toute notre collection <%= @subscription_type.name.capitalize %> en souscrivant à notre abonnement</p>
+      <div class="category-row">
+        <% @subscription_medias.each do |media| %>
+          <div class="media-padding">
+            <%= cl_image_tag media.photos.first.url, quality: :auto, width: 330, crop: :fill, class: 'media-card' %>
+          </div>
+        <% end %>
+      </div>
+      <%= form_tag orders_path do %>
+        <%= hidden_field_tag 'subscription_type_id', @subscription_type.id %>
+        <%= submit_tag 'Purchase', class: 'btn btn-wall' %>
+      <% end %>
+    </div>
+  </div>
+</div>

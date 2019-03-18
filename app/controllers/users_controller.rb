@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
+    @subscription_types = SubscriptionType.all.order('level ASC')
   end
 
   def edit

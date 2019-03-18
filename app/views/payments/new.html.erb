@@ -1,0 +1,23 @@
+<div class="order-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 50%), url(<%= asset_path 'background3.jpg' %>);">
+
+  <div class="container">
+    <div class="order-card">
+      <h1>Achat de l'abonnement <%= @order.subscription_type_name %></h1>
+        <%= form_tag order_payments_path(@order) do %>
+          <article>
+            <label class="amount">
+              <span>Amount: <%= humanized_money_with_symbol(@order.amount_cents) %></span>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-name="My Subscription"
+            data-email="<%= current_user.email %>"
+            data-description="Subscription <%= @order.subscription_type_name %>"
+            data-amount="<%= @order.amount_cents %>"
+            data-currency="<%= @order.amount_currency %>"></script>
+        <% end %>
+    </div>
+  </div>
+</div>
