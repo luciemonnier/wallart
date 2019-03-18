@@ -8,5 +8,4 @@ class SubscriptionTypesController < ApplicationController
   def index
     @subscription_types = policy_scope(SubscriptionType)
   end
-
 end
