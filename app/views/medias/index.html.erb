@@ -6,7 +6,7 @@
         <% @medias.each do |media| %>
           <div class="col-xs-12 col-sm-6 col-md-4">
               <%= link_to media_path(media) do %>
-                <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :scale;%>'); background-size: cover;">
+                <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
                   <div class="media-overlay text-center">
                     <span>
                       <h4><%= media.title.capitalize %></h4>
@@ -36,7 +36,7 @@
         <div class="category-row">
           <% @medias.select{ |media| media.category == category}.each do |media| %>
               <%= link_to media_path(media) do %>
-              <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :scale;%>'); background-size: cover;">
+              <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :pad, width: 400;%>'); background-size: cover;">
                 <div class="media-overlay text-center">
                   <span>
                     <h4><%= media.title.capitalize %></h4>
