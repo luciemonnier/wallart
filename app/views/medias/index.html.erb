@@ -1,18 +1,27 @@
+<% if params[:query].present? %>
+  <div class="container">
+    <div class="media-cards">
+      <h4>Nos résultats pour <strong><%= params[:query] %></strong></h4>
+      <div class="row">
+        <% @medias.each do |media| %>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <%= link_to media_path(media) do %>
+              <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :scale;%>'); background-size: cover;">
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="categories-bar">
+    <% @categories.each do |category| %>
+      <%= link_to category.name, category_path(category) %>
+    <% end %>
+  </div>
 <div class="container">
   <div class="media-cards">
-    <% if params[:query].present? %>
-    <h4>Nos résultats pour <strong><%= params[:query] %></strong></h4>
-    <div class="row">
-      <% @medias.each do |media| %>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <%= link_to media_path(media) do %>
-            <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :fill;%>'); background-size: cover;">
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <% else %>
       <% @categories.each do |category| %>
         <div class="category-title">
           <h3><%= link_to category.name.capitalize + 's', category_path(category), class: 'categ-link' %></h3>
@@ -21,14 +30,16 @@
         <div class="category-row">
           <% @medias.select{ |media| media.category == category}.each do |media| %>
             <%= link_to media_path(media) do %>
-              <%= cl_image_tag media.photos.first.url, quality: :auto, width: 330, crop: :fill, class: 'media-card' %>
+              <%= cl_image_tag media.photos.first.url, quality: :auto, width: 330, crop: :scale, class: 'media-card' %>
             <% end %>
           <% end %>
         </div>
       <% end %>
     </div>
   </div>
+</div>
 <% end %>
+
 <% if current_user.subscription_type.level < 3 %>
   <div class="wrapper red-wrapper">
     <div class="container display-unavailable-medias">
@@ -38,10 +49,13 @@
       <div class="category-row">
         <% @medias_unavailable.each do |media| %>
           <div class="media-padding">
-            <%= cl_image_tag media.photos.first.url, quality: :auto, width: 330, crop: :fill, class: 'media-card' %>
+            <%= cl_image_tag media.photos.first, :transformation=>[
+              {:width=>300, :crop=>"scale"},
+              {:quality=>"auto"}], class: 'media-card' %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
+
