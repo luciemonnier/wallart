@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_15_151449) do
+ActiveRecord::Schema.define(version: 2019_03_18_102130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 2019_03_15_151449) do
     t.index ["artist_id"], name: "index_media_on_artist_id"
     t.index ["category_id"], name: "index_media_on_category_id"
     t.index ["subscription_type_id"], name: "index_media_on_subscription_type_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "state"
+    t.string "subscription_type_name"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "EUR", null: false
+    t.jsonb "payment"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -129,6 +141,7 @@ ActiveRecord::Schema.define(version: 2019_03_15_151449) do
   add_foreign_key "media", "artists"
   add_foreign_key "media", "categories"
   add_foreign_key "media", "subscription_types"
+  add_foreign_key "orders", "users"
   add_foreign_key "photos", "media", column: "media_id"
   add_foreign_key "rentals", "media", column: "media_id"
   add_foreign_key "rentals", "users"

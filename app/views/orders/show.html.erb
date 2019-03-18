@@ -1,0 +1,16 @@
+
+
+<div class="order-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 50%), url(<%= asset_path 'background3.jpg' %>);">
+
+  <div class="container">
+    <div class="order-card">
+      <h1>Order</h1>
+      <ul>
+        <p>Vous pouvez profiter dès maintenant de votre nouvel abonnement!</p>
+        <li>Status: <%= @order.state %></li>
+        <li>Item: <%= @order.subscription_type_name %></li>
+        <li>Amount: <%= @order.amount_cents / 100  %>€/mois</li>
+      <ul>
+    </div>
+  </div>
+</div>

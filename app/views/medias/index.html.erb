@@ -5,10 +5,16 @@
       <div class="row">
         <% @medias.each do |media| %>
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= link_to media_path(media) do %>
-              <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :scale;%>'); background-size: cover;">
-              </div>
-            <% end %>
+              <%= link_to media_path(media) do %>
+                <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :scale;%>'); background-size: cover;">
+                  <div class="media-overlay text-center">
+                    <span>
+                      <h4><%= media.title.capitalize %></h4>
+                      <p><%= media.artist.name.capitalize %></p>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
           </div>
         <% end %>
       </div>
@@ -29,9 +35,16 @@
         </div>
         <div class="category-row">
           <% @medias.select{ |media| media.category == category}.each do |media| %>
-            <%= link_to media_path(media) do %>
-              <%= cl_image_tag media.photos.first.url, quality: :auto, width: 330, crop: :scale, class: 'media-card' %>
-            <% end %>
+              <%= link_to media_path(media) do %>
+              <div class="media-card" style="background-image: url('<%= image_path media.photos.first.url, crop: :scale;%>'); background-size: cover;">
+                <div class="media-overlay text-center">
+                  <span>
+                    <h4><%= media.title.capitalize %></h4>
+                    <p><%= media.artist.name.capitalize %></p>
+                  </span>
+                </div>
+              </div>
+              <% end %>
           <% end %>
         </div>
       <% end %>

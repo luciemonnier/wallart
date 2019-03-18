@@ -13,7 +13,7 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= yield %>
-    <% unless controller = "medias" || action = "show" %>
+    <% unless controller = "medias" && action = "show" %>
       <%= render 'shared/footer' %>
     <% end %>
     <%= javascript_include_tag 'application' %>

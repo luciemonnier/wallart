@@ -16,10 +16,6 @@
   margin-left:0px;
 }
 
-.media-card:hover {
-  transform: scale(1.05);
-}
-
 .category-list {
   border-bottom: rgba(0, 0, 0, 0.2)
 }
@@ -46,4 +42,21 @@
   margin: 10px;
   background-position: center;
   background-size: cover;
+}
+
+.media-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.media-overlay:hover {
+  opacity: 0.7;
 }
