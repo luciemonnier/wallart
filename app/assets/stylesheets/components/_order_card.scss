@@ -1,0 +1,21 @@
+.order-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  .btn {
+    color: white;
+    padding: 2px;
+    border-radius: 4px;
+    font-weight: bold;
+    background: #c70039;
+    display: flex;
+    justify-content: space-around;
+    width: 103px;
+  }
+}
+
+.order-banner {
+  padding-top: 70px;
+  background-size: cover;
+  height: 150vh;
+}
