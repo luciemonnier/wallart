@@ -1,0 +1,30 @@
+<div class="form-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 50%), url(<%= asset_path 'background3.jpg' %>);">
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="fiche">
+        <div>
+            <p>Choisissez l'abonnement qui vous convient</p>
+            <div class="subscription-types">
+              <% i = 0 %>
+              <div class="subscription-types">
+                <% i = 0 %>
+                <% @subscription_types.each do |subscription_type| %>
+                  <%= link_to subscription_type_path(subscription_type) do %>
+                    <div class="subscription-<%=i + 1%>">
+                      <span class="text-center">
+                      <p><strong><%= subscription_type.name %></strong></p>
+                      <p><%= subscription_type.price %>€/mois</p>
+                      </span>
+                    </div>
+                    <% i += 1 %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

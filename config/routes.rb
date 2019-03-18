@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   resources 'uploads', only: [:destroy]
   resources 'categories', only: [:show]
-  resources 'subscription_types', only: [:show, :update]
+  resources 'subscription_types', only: [:show, :index, :update]
   resources :orders, only: [:show, :create] do
     resources :payments, only: [:new, :create]
   end
