@@ -5,6 +5,7 @@
     <div class="col-xs-12 col-sm-4">
       <div class="fiche">
         <div>
+            <h4>Votre abonnement actuel est l'abonnement <strong><%= current_user.subscription_type.name %></strong></h4>
             <p>Choisissez l'abonnement qui vous convient</p>
             <div class="subscription-types">
               <% i = 0 %>
