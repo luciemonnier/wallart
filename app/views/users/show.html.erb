@@ -30,15 +30,16 @@
               </div>
           <% else %>
             <p> Mon abonnement : </p>
-              <div class="subscription-4">
-                  <span class="text-center">
+            <div class="subscription-4">
+                <span class="text-center">
                   <p><strong><%= @user.subscription_type.name %></p></strong></p>
                   <p><%= @user.subscription_type.price_cents / 100 %>€/mois</p>
-                  </span>
-              </div>
-            <p> Changer d'abonnement : </p>
+                </span>
+            </div>
+            <% if @subscription_types != [] %>
+            <p> Profitez d'encore plus de choix en changeant d'abonnement: </p>
               <div class="">
-                  <div class="subscription-types">
+                <div class="subscription-types">
                   <% i = 0 %>
                   <% @subscription_types.each do |subscription_type| %>
                     <%= link_to subscription_type_path(subscription_type) do %>
@@ -53,12 +54,18 @@
                   <% end %>
                 </div>
               </div>
+            <% end %>
           <% end %>
           <br><br>
           <%= link_to 'Modifier mon Profil', edit_user_path(@user), class:'btn-wall' %>
+          <%= link_to 'Voir tous les abonnements', subscription_types_path, class:'small-link' %>
         </div>
         <div>
-          <%= cl_image_tag @user.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+          <% if @user.photo == nil %>
+            <%= image_tag 'emptyavatag.jpg', class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+          <% else %>
+            <%= cl_image_tag @user.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+          <% end %>
         </div>
       </div>
     </div>

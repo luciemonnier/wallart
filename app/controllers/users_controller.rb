@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    @subscription_types = SubscriptionType.all.order('level ASC')
+    @subscription_types = SubscriptionType.select { |subscription_type| subscription_type.level > current_user.subscription_type.level }
+    if @subscription_types != []
+      @subscription_types = @subscription_types.order_by('level ASC')
+    end
   end
 
   def edit
