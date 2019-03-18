@@ -46,6 +46,11 @@
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre collection est pleine">
             <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
           </span>
+        <% elsif current_user.subscription_type.level < @media.subscription_type.level %>
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre abonnement ne vous permet pas de profiter de cette oeuvre">
+            <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
+          <%= link_to "Changer d'abonnement", subscription_types_path %>
+          </span>
         <% else %>
           <%= simple_form_for @rental do |f| %>
             <%= f.hidden_field :media_id %>
