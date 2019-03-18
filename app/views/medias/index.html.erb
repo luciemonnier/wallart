@@ -23,7 +23,7 @@
 <% else %>
   <div class="categories-bar">
     <% @categories.each do |category| %>
-      <%= link_to category.name, category_path(category) %>
+      <%= link_to category.name.upcase + 'S', category_path(category) %>
     <% end %>
   </div>
 <div class="container">
