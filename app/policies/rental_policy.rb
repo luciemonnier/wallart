@@ -17,6 +17,10 @@ class RentalPolicy < ApplicationPolicy
     user_admin_or_logged?
   end
 
+  def display?
+    true
+  end
+
   private
 
   def user_admin_or_logged?

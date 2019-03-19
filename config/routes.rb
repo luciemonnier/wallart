@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'uploads/new'
-  get 'uploads/create'
-  get 'uploads/destroy'
-  get 'categories/show'
   ActiveAdmin.routes(self)
   devise_for :users
   get '/', to: 'pages#home', as: 'home'
@@ -18,5 +14,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :create] do
     resources :payments, only: [:new, :create]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'rentals/display', to: 'rentals#display', as: 'display'
+  patch 'rentals/:id', to: 'rentals#send', as: 'send'
 end

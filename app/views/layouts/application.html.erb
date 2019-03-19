@@ -11,13 +11,16 @@
     <%= stylesheet_pack_tag 'application' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <% unless params[:controller] == "rentals" && params[:action] == "display" %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <%= yield %>
-    <% unless controller == "medias" && action == "show" %>
+    <% unless (params[:controller] == "medias" && params[:action] == "show") || params[:controller] == "rentals" && params[:action] == "display" %>
       <%= render 'shared/footer' %>
     <% end %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <%= yield :after_js %>
   </body>
 </html>
 
