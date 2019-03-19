@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_110210) do
+ActiveRecord::Schema.define(version: 2019_03_19_115028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_110210) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "display"
+    t.boolean "display", default: false
     t.index ["media_id"], name: "index_rentals_on_media_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
   end

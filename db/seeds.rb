@@ -24,7 +24,7 @@ end
 puts '...'
 
 medias = Media.all
-urls = ['https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491461/kfu5w0okaee1wjeahb5m.jpg',
+urls = [#'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491461/kfu5w0okaee1wjeahb5m.jpg',
         # 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491373/nrmxjcakoxmtsrym3m9g.jpg',
         #'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552491176/k9qdv08rk4zfkftq0bfs.jpg',
         #'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1552490740/zjazgxmhqsjf7xclgce3.jpg',
