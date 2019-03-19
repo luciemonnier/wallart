@@ -6,7 +6,7 @@
             <div class="col-md-6 col-xs-12">
               <%= link_to media_path(rental.media_id) do %>
                 <% if rental.media.category.name == "Vidéo"  %>
-                  <%= video_tag rental.media.photos.first.url, class: "full rental card-rental", controls: true %>
+                  <%= video_tag rental.media.photos.first.url, class: "full rental card-rental", controls: true, loop: true, autoplay: true %>
                 <% else %>
                   <div class="full-rental card-rental" style="background-image: url('<%= cl_image_path rental.media.photos.first.url, width: 400; %>'); background-size: cover;">
                   </div>
