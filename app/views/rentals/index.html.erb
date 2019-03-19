@@ -9,8 +9,8 @@
                 </div>
               <% end %>
                 <div class="rental-btn-group">
-                  <%= link_to "-", rental_path(rental), method: :patch, class: 'btn rental-round-wall' %>
-                  <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
+                  <%= link_to "-", rental_path(rental, active: false), method: :patch, class: 'btn rental-round-wall' %>
+                  <%= link_to "Afficher sur mon cadre", rental_path(rental, display: true), method: :patch, class: 'btn small-wall' %>
                 </div>
             </div>
         <% end %>
@@ -40,7 +40,7 @@
                     <div class="upload-card-bottom">
                       <p><strong><%= upload.name.capitalize %></strong></p>
                       <div class="upload-link-list">
-                        <%= link_to upload_path(upload), method: :delete, class: 'upload-link' do %>
+                        <%= link_to '#', class: 'upload-link' do %>
                           <i class="fas fa-trash-alt"></i>
                         <% end %>
                         <%= link_to '#', class: 'upload-link' do %>
