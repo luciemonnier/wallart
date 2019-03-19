@@ -1,15 +1,6 @@
-<% if @rental.display == true %>
-  <% if @rental.media.category.name == "Vidéo" %>
-    <%= video_tag @rental.media.photos.first.url, class: 'media-displayed', controls: true, autoplay: true, loop: true%>
-  <% else %>
-    <div class="media-displayed" style="background-image: url('<%= cl_image_path @rental.media.photos.first.url %>'); background-size: cover;">
-    </div>
-  <% end %>
-
-<% elsif @upload != nil %>
-  <div class="media-displayed" style="background-image: url('<%= cl_image_path @upload.photo %>'); background-size: cover;">
-  </div>
-<% end %>
+<div id="display">
+  <%= render 'shared/media', url: @url, category: @category, rental: @is_rental %>
+</div>
 
 <% content_for :after_js do %>
   <script>
@@ -17,8 +8,8 @@
       { channel: 'UserChannel', user_id: <%= current_user.id %> },
       { received: (data) => {
         console.log(data)
-        const element = document.querySelector('.media-displayed');
-        element.style.backgroundImage = `url(${data.image.url})`
+        const element = document.querySelector('#display');
+        element.innerHTML = data.media_partial
       } }
     )
   </script>

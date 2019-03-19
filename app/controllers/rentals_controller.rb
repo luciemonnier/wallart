@@ -29,20 +29,35 @@ class RentalsController < ApplicationController
       @rental.display = true
     end
     @rental.save
-    ActionCable.server.broadcast("user_#{current_user.id}", { image: @rental.media.photos.first.url })
+    broadcast_rental(@rental)
+    #ActionCable.server.broadcast("user_#{current_user.id}", { image: @rental.media.photos.first.url })
     redirect_to rentals_path
   end
 
   def display
+    @upload = Upload.where(user: current_user, display: true).first
     if Rental.where(user: current_user, display: true).first == nil
       @rental = Rental.new
+      @url = @upload.photo
+      @is_rental = false
+      @category = "Photographie"
     else
       @rental = Rental.where(user: current_user, display: true).first
+      @url = @rental.media.photos.first.url
+      @is_rental = true
+      @category = @rental.media.category.name
     end
     authorize @rental
-    @upload = Upload.where(user: current_user, display: true).first
   end
 
+  def broadcast_rental(rental)
+    ActionCable.server.broadcast("user_#{current_user.id}", {
+      media_partial: ApplicationController.renderer.render(
+        partial: "shared/media",
+        locals: { url: rental.media.photos.first.url, category: rental.media.category.name, rental: true }
+      )
+    })
+  end
 
   private
 

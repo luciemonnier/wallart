@@ -1,0 +1,11 @@
+  <% if rental == true %>
+    <% if category == "Vidéo" %>
+      <%= video_tag url, class: 'media-displayed', controls: true, autoplay: true, loop: true %>
+    <% else %>
+      <div class="media-displayed" style="background-image: url('<%= cl_image_path url %>'); background-size: cover;">
+      </div>
+    <% end %>
+  <% else%>
+    <div class="media-displayed" style="background-image: url('<%= cl_image_path url %>'); background-size: cover;">
+    </div>
+  <% end %>

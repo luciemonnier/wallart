@@ -14,8 +14,18 @@
         <% media.photos.each do |photo| %>
           <div class="col-xs-12 col-md-3">
             <%= link_to media_path(media) do %>
-            <div class="media-card media-portrait" style="background-image: url('<%= image_path photo.url, crop: :fill, width: 200;%>'); background-size: cover;">
-            </div>
+              <% if media.category.name == "Vidéo" %>
+                <%= video_tag photo.url, class: "media-portrait" %>
+              <% else %>
+                <div class="media-portrait" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                  <div class="media-overlay text-center">
+                    <span>
+                      <h4><%= media.title.capitalize %></h4>
+                      <p><%= media.artist.name.capitalize %></p>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
             <% end %>
           </div>
         <% end %>
