@@ -4,9 +4,13 @@
   <div class="">
     <h1><%= @media.title %></h1>
     <br>
-    <% @media.photos.each do |photo| %>
-        <div class="media-photo" style="background-image: url('<%= image_path photo.url, crop: :fill;%>'); background-size: cover;">
+    <% if @media.category.name == "Vidéo" %>
+       <%= video_tag @media.photos.first.url, class: 'media-photo', controls: true, autoplay: true, loop: true %>
+    <% else %>
+      <% @media.photos.each do |photo| %>
+        <div class="media-photo" style="background-image: url('<%= cl_image_path photo.url, crop: :fill;%>'); background-size: cover;">
         </div>
+      <% end %>
     <% end %>
     <br>
     <h4><strong>Description:</strong></h4>

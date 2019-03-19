@@ -16,10 +16,12 @@
   margin-right: 15px;
   display: flex;
   justify-content: space-around;
+  cursor: pointer;
 }
 
 .tabs-underlined .tab-underlined.active {
   color: white;
   font-weight: bold;
   background: #c70039;
+  opacity: 1;
 }

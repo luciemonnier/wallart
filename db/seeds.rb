@@ -17,6 +17,7 @@ puts '...'
     category: Category.all.sample,
     price: (1000..1000000).to_a.sample,
     description: Faker::Lorem.paragraph,
+    portrait: [true, false].sample
   )
   media.save
 end
