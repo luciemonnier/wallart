@@ -12,4 +12,8 @@ class MediaPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def portrait?
+    true
+  end
 end

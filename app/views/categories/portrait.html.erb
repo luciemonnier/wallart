@@ -3,18 +3,18 @@
     <h4 id="categ-title">Découvrez nos <strong><%= @category.name + 's' %></strong></h4>
     <ul class="list-inline tabs-underlined">
       <li>
-        <%= link_to "Format Portrait", category_portrait_path(@category), class: "tab-underlined" %>
+        <%= link_to "Format Portrait", category_portrait_path(@category), class: "tab-underlined active" %>
       </li>
       <li>
-        <%= link_to "Format Paysage", category_path(@category), class: "tab-underlined active" %>
+        <%= link_to "Format Paysage", category_path(@category), class: "tab-underlined" %>
       </li>
     </ul>
     <div class="row">
       <% @medias.each do |media| %>
         <% media.photos.each do |photo| %>
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-md-3">
             <%= link_to media_path(media) do %>
-            <div class="media-card" style="background-image: url('<%= image_path photo.url, crop: :fill, width: 400;%>'); background-size: cover;">
+            <div class="media-card media-portrait" style="background-image: url('<%= image_path photo.url, crop: :fill, width: 200;%>'); background-size: cover;">
             </div>
             <% end %>
           </div>
