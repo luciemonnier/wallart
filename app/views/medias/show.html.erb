@@ -42,7 +42,7 @@
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre fait déjà partie de votre collection!">
             <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
           </span>
-        <% elsif current_user.rentals.where(active: true).size >= 4 %>
+        <% elsif current_user.rentals.where(active: true).size >= current_user.subscription_type.rentals_number %>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre collection est pleine">
             <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
           </span>
