@@ -5,7 +5,7 @@
         <% @active_rentals.each do |rental| %>
             <div class="col-md-6 col-xs-12">
               <%= link_to media_path(rental.media_id) do %>
-                <div class="full-rental card-rental" style="background-image: url('<%= image_path rental.media.photos.first.url %>'); background-size: cover;">
+                <div class="full-rental card-rental" style="background-image: url('<%= cl_image_path rental.media.photos.first.url, width: 400; %>'); background-size: cover;">
                 </div>
               <% end %>
                 <div class="rental-btn-group">
@@ -24,7 +24,7 @@
           <% (current_user.subscription_type.rentals_number - @active_rentals.size).times do %>
             <div class="col-md-6 col-xs-12">
               <%= link_to medias_path do %>
-                <div class="empty-rental card-rental" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 50%), url('<%= image_path Photo.all.sample.url %>'); background-size: cover;">
+                <div class="empty-rental card-rental" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 50%), url('<%= cl_image_path Photo.all.sample.url, width: 400; %>'); background-size: cover;">
                   <div class="plus">
                     <i class="fas fa-plus"></i>
                   </div>
@@ -39,18 +39,18 @@
         <div class="upload-cards">
           <div class="row">
             <% @uploads.last(3).each do |upload| %>
-              <div class="media-padding">
-                <div class="col-sm-6 col-md-4">
+              <div class="col-sm-6 col-md-4">
+                <div class="media-padding">
                   <div class="upload-card">
                     <div class="upload-card-top" style="background-image: url('<%= cl_image_path upload.photo %>'); background-size: cover;">
                     </div>
                     <div class="upload-card-bottom">
                       <p><strong><%= upload.name.capitalize %></strong></p>
                       <div class="upload-link-list">
-                        <%= link_to '#', class: 'upload-link' do %>
+                        <%= link_to upload_path(upload), method: :delete, class: 'upload-link' do %>
                           <i class="fas fa-trash-alt"></i>
                         <% end %>
-                        <%= link_to '#', class: 'upload-link' do %>
+                        <%= link_to upload_path(upload), method: :patch, class: 'upload-link' do %>
                           <i class="fas fa-tv"></i>
                         <% end %>
                       </div>

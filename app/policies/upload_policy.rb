@@ -17,6 +17,10 @@ class UploadPolicy < ApplicationPolicy
     user_admin_or_logged?
   end
 
+  def update?
+    true
+  end
+
   private
 
   def user_admin_or_logged?

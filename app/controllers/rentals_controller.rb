@@ -19,33 +19,30 @@ class RentalsController < ApplicationController
     authorize @rental
     if params[:active] == "false"
       @rental.active = false
+      @rental.display = false
     end
     if params[:display] == "true"
-      Rental.where(display: true).each do |rental|
+      Rental.where(user: current_user, display: true).each do |rental|
         rental.display = false
         rental.save
-        ActionCable.server.broadcast("rental_#{rental.id}", { image: @rental.media.photos.first.url })
       end
       @rental.display = true
     end
     @rental.save
+    ActionCable.server.broadcast("user_#{current_user.id}", { image: @rental.media.photos.first.url })
     redirect_to rentals_path
   end
 
   def display
-    @rental = Rental.where(display: true).first
+    if Rental.where(user: current_user, display: true).first == nil
+      @rental = Rental.new
+    else
+      @rental = Rental.where(user: current_user, display: true).first
+    end
     authorize @rental
+    @upload = Upload.where(user: current_user, display: true).first
   end
 
-  def broadcast_rental
-    ActionCable.server.broadcast("rental", {
-      message_partial: ApplicationController.renderer.render(
-        partial: "rentals/display",
-        locals: { rental: self, user_is_messages_author: false }
-      ),
-      current_user_id: user.id
-    })
-  end
 
   private
 
