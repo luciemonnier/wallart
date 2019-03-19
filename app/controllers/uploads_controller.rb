@@ -25,8 +25,20 @@ class UploadsController < ApplicationController
     redirect_to rentals_path
   end
 
-  def index
-    @uploads = policy_scope(Upload)
+  def update
+    @upload = Upload.find(params[:id])
+    authorize @upload
+    Rental.where(user: current_user, display: true).each do |rental|
+      rental.display = false
+      rental.save
+    end
+    Upload.where(user: current_user, display: true).each do |upload|
+      upload.display = false
+    end
+    @upload.display = true
+    @upload.save
+    ActionCable.server.broadcast("user_#{current_user.id}", { image: @upload.photo })
+    redirect_to rentals_path
   end
 
   private

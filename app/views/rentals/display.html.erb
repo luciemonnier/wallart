@@ -1,14 +1,20 @@
-<div class="media-displayed" style="background-image: url('<%= cl_image_path @rental.media.photos.first.url %>'); background-size: cover;">
-</div>
+<% if @rental.display == true %>
+  <div class="media-displayed" style="background-image: url('<%= cl_image_path @rental.media.photos.first.url %>'); background-size: cover;">
+  </div>
+<% elsif @upload != nil %>
+  <div class="media-displayed" style="background-image: url('<%= cl_image_path @upload.photo %>'); background-size: cover;">
+  </div>
+<% end %>
+
 <% content_for :after_js do %>
   <script>
-    App['rental_<%= @rental.id %>'] = App.cable.subscriptions.create(
-      { channel: 'RentalChannel', rental_id: <%= @rental.id %> },
+    App['user_<%= current_user.id %>'] = App.cable.subscriptions.create(
+      { channel: 'UserChannel', user_id: <%= current_user.id %> },
       { received: (data) => {
+        console.log(data)
         const element = document.querySelector('.media-displayed');
         element.style.backgroundImage = `url(${data.image.url})`
       } }
     )
   </script>
 <% end %>
-

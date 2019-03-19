@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources 'users', only: [:show, :edit, :update] do
     resources 'uploads', only: [:new, :create, :index]
   end
-  resources 'uploads', only: [:destroy]
+  resources 'uploads', only: [:destroy, :update]
   resources 'categories', only: [:show]
   resources 'subscription_types', only: [:show, :index, :update]
   resources :orders, only: [:show, :create] do
