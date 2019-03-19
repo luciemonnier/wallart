@@ -4,6 +4,12 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     authorize @category
-    @medias = Media.where(category: @category).select { |media| media.subscription_type.level <= current_user.subscription_type.level }
+    @medias = Media.where(category: @category, portrait: false)
+  end
+
+  def portrait
+    @category = Category.find(params[:category_id])
+    authorize @category
+    @medias = Media.where(category: @category, portrait: true)
   end
 end

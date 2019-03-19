@@ -4,7 +4,7 @@ class MediasController < ApplicationController
     @categories = Category.all
     if params[:query].present?
       @medias = policy_scope(Media).search_by_title_category_and_description(params[:query])
-      @medias = @medias.to_a
+      @medias = @medias.where(portrait: false).to_a
       policy_scope(Media).each do |media|
         if media.tags.any? { |tag| tag.name.match(/#{params[:query].downcase}/) }
           @medias << media

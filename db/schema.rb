@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_130118) do
+ActiveRecord::Schema.define(version: 2019_03_19_150138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_130118) do
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.bigint "subscription_type_id"
+    t.boolean "portrait"
     t.index ["artist_id"], name: "index_media_on_artist_id"
     t.index ["category_id"], name: "index_media_on_category_id"
     t.index ["subscription_type_id"], name: "index_media_on_subscription_type_id"
