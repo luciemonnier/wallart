@@ -10,7 +10,7 @@ class RentalPolicy < ApplicationPolicy
   end
 
   def create?
-    user_admin_or_logged?
+    true
   end
 
   def update?

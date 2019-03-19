@@ -62,9 +62,7 @@
       <div class="category-row">
         <% @medias_unavailable.each do |media| %>
           <div class="media-padding">
-            <%= cl_image_tag media.photos.first, :transformation=>[
-              {:width=>300, :crop=>"scale"},
-              {:quality=>"auto"}], class: 'media-card' %>
+            <%= cl_image_tag media.photos.first.url, class: 'media-card', width: 400 %>
           </div>
         <% end %>
       </div>

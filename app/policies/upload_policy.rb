@@ -6,7 +6,7 @@ class UploadPolicy < ApplicationPolicy
   end
 
   def new?
-    user_admin_or_logged?
+    true
   end
 
   def create?
@@ -20,6 +20,6 @@ class UploadPolicy < ApplicationPolicy
   private
 
   def user_admin_or_logged?
-    user.admin == true || current_user != nil
+    user.admin == true || record.user == user
   end
 end
