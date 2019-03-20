@@ -10,10 +10,11 @@ class Media < ApplicationRecord
   has_many :tags, through: :taggings
 
   include PgSearch
-  pg_search_scope :search_by_title_category_and_description,
+  pg_search_scope :search_by_title_artist_category_and_description,
     against: [:title, :description],
     associated_against: {
-      category: [:name]
+      category: [:name],
+      artist: [:name]
     },
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
