@@ -23,6 +23,12 @@ class UploadsController < ApplicationController
     authorize @upload
     @upload.destroy
     redirect_to rentals_path
+    ActionCable.server.broadcast("user_#{current_user.id}", {
+      media_partial: ApplicationController.renderer.render(
+        partial: "shared/media",
+        locals: { url: 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1553093701/mznyifv2lxjyub3ja7hy.jpg', category: "Upload", rental: false}
+        )
+      })
   end
 
   def index
@@ -41,7 +47,12 @@ class UploadsController < ApplicationController
     end
     @upload.display = true
     @upload.save
-    ActionCable.server.broadcast("user_#{current_user.id}", { image: @upload.photo })
+    ActionCable.server.broadcast("user_#{current_user.id}", {
+      media_partial: ApplicationController.renderer.render(
+        partial: "shared/media",
+        locals: {url: @upload.photo, category: "Upload", rental: false}
+      )
+    })
     redirect_to rentals_path
   end
 

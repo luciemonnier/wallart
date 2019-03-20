@@ -1,9 +1,5 @@
 <div id="display">
-  <% if Rental.where(user: current_user, display: true).first.nil? && @upload.nil? %>
-    <%= image_tag @url, crop: :fill %>
-  <% else %>
-    <%= render 'shared/media', url: @url, category: @category, rental: @is_rental %>
-  <% end %>
+  <%= render 'shared/media', url: @url, category: @category, rental: @is_rental %>
 </div>
 
 <% content_for :after_js do %>
