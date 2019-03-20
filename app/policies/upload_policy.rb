@@ -21,6 +21,10 @@ class UploadPolicy < ApplicationPolicy
     true
   end
 
+  def index?
+    true
+  end
+
   private
 
   def user_admin_or_logged?

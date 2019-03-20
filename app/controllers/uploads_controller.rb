@@ -25,6 +25,10 @@ class UploadsController < ApplicationController
     redirect_to rentals_path
   end
 
+  def index
+    @uploads = policy_scope(Upload)
+  end
+
   def update
     @upload = Upload.find(params[:id])
     authorize @upload
