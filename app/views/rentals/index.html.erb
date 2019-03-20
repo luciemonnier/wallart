@@ -48,15 +48,15 @@
                     <div class="upload-card-top" style="background-image: url('<%= cl_image_path upload.photo %>'); background-size: cover;">
                     </div>
                     <div class="upload-card-bottom">
+                      <span>
                       <p><strong><%= upload.name.capitalize %></strong></p>
+                      </span>
+                      <span>
                       <div class="upload-link-list">
-                        <%= link_to upload_path(upload), method: :delete, class: 'upload-link' do %>
-                          <i class="fas fa-trash-alt"></i>
-                        <% end %>
-                        <%= link_to upload_path(upload), method: :patch, class: 'upload-link' do %>
-                          Afficher
-                        <% end %>
+                        <%= link_to "Afficher", upload_path(upload), method: :patch, class: 'upload-link' %>
+                        <%= link_to "Supprimer", upload_path(upload), method: :delete, class: 'upload-link' %>
                       </div>
+                      </span>
                     </div>
                   </div>
                 </div>

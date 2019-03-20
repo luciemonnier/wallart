@@ -50,7 +50,6 @@
       <% @categories.each do |category| %>
         <div class="category-title">
           <h3><%= link_to category.name.capitalize + 's', category_path(category), class: 'categ-link' %></h3>
-          <div class="red-square"></div>
         </div>
         <div class="category-row">
           <% @medias.select{ |media| media.category == category}.each do |media| %>
@@ -84,7 +83,7 @@
 </div>
 <% end %>
 
-<% if current_user.subscription_type.level < 3 %>
+<% if current_user.subscription_type.level < 2 %>
   <div class="wrapper red-wrapper">
     <div class="container display-unavailable-medias">
       <h4>
