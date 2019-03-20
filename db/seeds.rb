@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'faker'
 
 puts 'patiente un peu ça seed!'
@@ -14,7 +15,7 @@ puts '...'
     title: Faker::Book.unique.title,
     artist: Artist.all.sample,
     subscription_type: SubscriptionType.all.sample,
-    category: Category.all.sample,
+    category: Category.all.reject{|category| category.name == "Vidéo"}.sample,
     price: (1000..1000000).to_a.sample,
     description: Faker::Lorem.paragraph,
     portrait: [true, false].sample

@@ -8,7 +8,6 @@
               <%= link_to media_path(media) do %>
                 <% if media.category.name == "Vidéo" %>
                   <%= video_tag media.photos.first.url, class: "media-card" %>
-                  </div>
                 <% else %>
                   <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
                     <div class="media-overlay text-center">
@@ -41,14 +40,18 @@
         <div class="category-row">
           <% @medias.select{ |media| media.category == category}.each do |media| %>
               <%= link_to media_path(media) do %>
-              <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :pad, width: 400;%>'); background-size: cover;">
-                <div class="media-overlay text-center">
-                  <span>
-                    <h4><%= media.title.capitalize %></h4>
-                    <p><%= media.artist.name.capitalize %></p>
-                  </span>
+              <% if media.category.name == "Vidéo" %>
+                  <%= video_tag media.photos.first.url, class: "media-card" %>
+              <% else %>
+                <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                  <div class="media-overlay text-center">
+                    <span>
+                      <h4><%= media.title.capitalize %></h4>
+                      <p><%= media.artist.name.capitalize %></p>
+                    </span>
+                  </div>
                 </div>
-              </div>
+                <% end %>
               <% end %>
           <% end %>
         </div>
