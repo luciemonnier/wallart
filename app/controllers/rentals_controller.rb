@@ -20,25 +20,34 @@ class RentalsController < ApplicationController
     if params[:active] == "false"
       @rental.active = false
       @rental.display = false
+      @rental.display = false
     end
     if params[:display] == "true"
       Rental.where(user: current_user, display: true).each do |rental|
         rental.display = false
         rental.save
       end
+      Upload.where(user: current_user, display: true).each do |upload|
+        upload.display = false
+        upload.save
+      end
       @rental.display = true
     end
     @rental.save
     broadcast_rental(@rental)
-    #ActionCable.server.broadcast("user_#{current_user.id}", { image: @rental.media.photos.first.url })
     redirect_to rentals_path
   end
 
   def display
     @upload = Upload.where(user: current_user, display: true).first
-    if Rental.where(user: current_user, display: true).first == nil
+    if Rental.where(user: current_user, display: true).first.nil?
       @rental = Rental.new
       @url = @upload.photo
+      @is_rental = false
+      @category = "Photographie"
+    elsif @upload.nil? && Rental.where(user: current_user, display: true).first.nil?
+      @rental = Rental.new
+      @url = 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1553093701/mznyifv2lxjyub3ja7hy.jpg'
       @is_rental = false
       @category = "Photographie"
     else

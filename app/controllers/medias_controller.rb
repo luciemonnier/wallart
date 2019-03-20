@@ -1,5 +1,4 @@
 class MediasController < ApplicationController
-
   def index
     @categories = Category.all
     if params[:query].present?
@@ -18,6 +17,7 @@ class MediasController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     @media = Media.find(params[:id])
     authorize @media
     @rental = Rental.new(media: @media, user: current_user)

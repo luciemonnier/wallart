@@ -1,4 +1,9 @@
 <% if params[:query].present? %>
+  <div class="categories-bar">
+    <% @categories.each do |category| %>
+      <%= link_to category.name.upcase + 'S', category_path(category) %>
+    <% end %>
+  </div>
   <div class="container">
     <div class="media-cards">
       <h4>Nos résultats pour <strong><%= params[:query] %></strong></h4>

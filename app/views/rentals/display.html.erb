@@ -1,5 +1,9 @@
 <div id="display">
-  <%= render 'shared/media', url: @url, category: @category, rental: @is_rental %>
+  <% if Rental.where(user: current_user, display: true).first.nil? && @upload.nil? %>
+    Rien n'es affiché pour le moment!
+  <% else %>
+    <%= render 'shared/media', url: @url, category: @category, rental: @is_rental %>
+  <% end %>
 </div>
 
 <% content_for :after_js do %>

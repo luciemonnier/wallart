@@ -1,4 +1,9 @@
 <div class="wrapper white-wrapper">
+  <div class="categories-bar">
+    <% @categories.each do |category| %>
+      <%= link_to category.name.upcase + 'S', category_path(category) %>
+    <% end %>
+  </div>
   <div class="container">
     <h4 id="categ-title">Découvrez nos <strong><%= @category.name + 's' %></strong></h4>
     <ul class="list-inline tabs-underlined">
