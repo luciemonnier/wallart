@@ -40,7 +40,7 @@ class RentalsController < ApplicationController
 
   def display
     @upload = Upload.where(user: current_user, display: true).first
-    if Rental.where(user: current_user, display: true).first.nil?
+    if Rental.where(user: current_user, display: true).first.nil? && !@upload.nil?
       @rental = Rental.new
       @url = @upload.photo
       @is_rental = false
@@ -50,7 +50,7 @@ class RentalsController < ApplicationController
       @url = 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1553093701/mznyifv2lxjyub3ja7hy.jpg'
       @is_rental = false
       @category = "Photographie"
-    else
+    elsif !Rental.where(user: current_user, display: true).first.nil?
       @rental = Rental.where(user: current_user, display: true).first
       @url = @rental.media.photos.first.url
       @is_rental = true
