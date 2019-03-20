@@ -15,7 +15,7 @@
       <%= render 'shared/navbar' %>
     <% end %>
     <%= yield %>
-    <% unless (params[:controller] == "medias" && params[:action] == "show") || params[:controller] == "rentals" && params[:action] == "display" %>
+    <% unless (params[:controller] == "medias" && params[:action] == "show") || params[:controller] == "rentals" && params[:action] == "display" || params[:controller] == "users"%>
       <%= render 'shared/footer' %>
     <% end %>
     <%= javascript_include_tag 'application' %>
