@@ -16,11 +16,12 @@
   p {
     margin: 0px;
   }
-  padding: 8px;
+  padding: 10px;
   height: 20%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 14px;
 }
 
 .upload-card-top {
@@ -28,7 +29,7 @@
 }
 
 .upload-link-list {
-  width: 50px;
+  width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,6 +37,7 @@
 
 .upload-link {
   color: $brand-primary;
+  font-size: 10px;
 }
 
 .upload-link:hover {
