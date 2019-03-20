@@ -50,9 +50,11 @@
                     <div class="upload-card-bottom">
                       <p><strong><%= upload.name.capitalize %></strong></p>
                       <div class="upload-link-list">
-                        <%= link_to "Afficher sur mon cadre", upload_path(upload), method: :delete, class: 'upload-link' %>
+                        <%= link_to upload_path(upload), method: :delete, class: 'upload-link' do %>
+                          <i class="fas fa-trash-alt"></i>
+                        <% end %>
                         <%= link_to upload_path(upload), method: :patch, class: 'upload-link' do %>
-                          <i class="fas fa-tv"></i>
+                          Afficher
                         <% end %>
                       </div>
                     </div>

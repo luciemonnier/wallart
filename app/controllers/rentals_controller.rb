@@ -16,6 +16,7 @@ class RentalsController < ApplicationController
 
   def update
     @rental = Rental.find(params[:id])
+    @upload = Upload.new
     authorize @rental
     if params[:active] == "false"
       @rental.active = false
@@ -32,9 +33,10 @@ class RentalsController < ApplicationController
         upload.save
       end
       @rental.display = true
+      @is_rental = true
     end
     @rental.save
-    broadcast_rental(@rental)
+    broadcast_rental(@rental, @upload)
     redirect_to rentals_path
   end
 
@@ -44,11 +46,11 @@ class RentalsController < ApplicationController
       @rental = Rental.new
       @url = @upload.photo
       @is_rental = false
-      @category = "Photographie"
+      @category = "Upload"
     elsif @upload.nil? && Rental.where(user: current_user, display: true).first.nil?
       @rental = Rental.new
       @url = 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1553093701/mznyifv2lxjyub3ja7hy.jpg'
-      @is_rental = false
+      @is_rental = nil
       @category = "Photographie"
     elsif !Rental.where(user: current_user, display: true).first.nil?
       @rental = Rental.where(user: current_user, display: true).first
@@ -59,11 +61,11 @@ class RentalsController < ApplicationController
     authorize @rental
   end
 
-  def broadcast_rental(rental)
+  def broadcast_rental(rental, upload)
     ActionCable.server.broadcast("user_#{current_user.id}", {
       media_partial: ApplicationController.renderer.render(
         partial: "shared/media",
-        locals: { url: rental.media.photos.first.url, category: rental.media.category.name, rental: true }
+        locals: hash_locals(rental, upload)
       )
     })
   end
@@ -72,5 +74,15 @@ class RentalsController < ApplicationController
 
   def params_rental
     params.require(:rental).permit(:media_id, :user_id)
+  end
+
+  def hash_locals(rental, upload)
+    if @is_rental == nil
+      { url: 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1553093701/mznyifv2lxjyub3ja7hy.jpg', category: "Photographie", rental: false }
+    elsif @is_rental
+      { url: rental.media.photos.first.url, category: rental.media.category.name, rental: true }
+    else
+      { url: upload.photo, category: "Upload", rental: false }
+    end
   end
 end
