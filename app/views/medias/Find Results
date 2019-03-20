@@ -1,0 +1,81 @@
+Searching 430 files for "Vidéo"
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/categories/portrait.html.erb:
+   15            <div class="col-xs-12 col-md-3">
+   16              <%= link_to media_path(media) do %>
+   17:               <% if media.category.name == "Video" %>
+   18                  <%= video_tag photo.url, class: "media-portrait" %>
+   19                <% else %>
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/categories/show.html.erb:
+   15            <div class="col-xs-12 col-md-4">
+   16              <%= link_to media_path(media) do %>
+   17:               <% if media.category.name == "Video" %>
+   18                  <%= video_tag photo.url, class: "media-card" %>
+   19                <% else %>
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/medias/index.html.erb:
+    7            <div class="col-xs-12 col-sm-6 col-md-4">
+    8                <%= link_to media_path(media) do %>
+    9:                 <% if media.category.name == "Video" %>
+   10                    <%= video_tag media.photos.first.url, class: "media-card" %>
+   11                  <% else %>
+   ..
+   41            <% @medias.select{ |media| media.category == category}.each do |media| %>
+   42                <%= link_to media_path(media) do %>
+   43:               <% if media.category.name == "Video" %>
+   44                    <%= video_tag media.photos.first.url, class: "media-card" %>
+   45                <% else %>
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/medias/show.html.erb:
+    5      <h1><%= @media.title %></h1>
+    6      <br>
+    7:     <% if @media.category.name == "Video" %>
+    8         <%= video_tag @media.photos.first.url, class: 'media-photo', controls: true, autoplay: true, loop: true %>
+    9      <% else %>
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/rentals/index.html.erb:
+    6              <div class="col-md-6 col-xs-12">
+    7                <%= link_to media_path(rental.media_id) do %>
+    8:                 <% if rental.media.category.name == "Video"  %>
+    9                    <%= video_tag rental.media.photos.first.url, class: "full rental card-rental", controls: true, loop: true, autoplay: true %>
+   10                  <% else %>
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/shared/_home_user_logged.html.erb:
+   19      </div>
+   20      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+   21:       <%= link_to category_path(Category.where(name: 'Video').first.id) do %>
+   22        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'video.jpg' %>);">
+   23          <div class="card-description">
+   24:           <h2>Video</h2>
+   25          </div>
+   26        </div>
+
+/Users/luciemonnier/code/luciemonnier/wallart/app/views/shared/_media.html.erb:
+    1    <% if rental == true %>
+    2:     <% if category == "Video" %>
+    3        <%= video_tag url, class: 'media-displayed', controls: true, autoplay: true, loop: true %>
+    4      <% else %>
+
+/Users/luciemonnier/code/luciemonnier/wallart/db/seeds.rb:
+   16      artist: Artist.all.sample,
+   17      subscription_type: SubscriptionType.all.sample,
+   18:     category: Category.all.reject{|category| category.name == "Video"}.sample,
+   19      price: (1000..1000000).to_a.sample,
+   20      description: Faker::Lorem.paragraph,
+
+/Users/luciemonnier/code/luciemonnier/wallart/wallarts/app/controllers/medias_controller.rb:
+    1  class MediasController < ApplicationController
+    2    def index
+    3:     @categories = ["vidéo", "cinémagraphe", "photo numérique", "algorithme", "illustration", "peinture numérique"]
+    4      if params[:query].present?
+    5        @medias = Media.search_by_title_category_and_description(params[:query])
+
+/Users/luciemonnier/code/luciemonnier/wallart/wallarts/app/views/pages/home.html.erb:
+   20        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_path 'video-2.jpg' %>);">
+   21          <div class="card-description">
+   22:         <h2>Video</h2>
+   23          </div>
+   24          <a class="card-link" href="#" ></a>
+
+12 matches across 10 files
