@@ -1,38 +1,40 @@
-<div class="wrapper white-wrapper">
-  <div class="categories-bar">
-    <% @categories.each do |category| %>
-      <%= link_to category.name.upcase + 'S', category_path(category) %>
-    <% end %>
-  </div>
-  <h4 id="categ-title">Découvrez nos <strong><%= @category.name + 's' %></strong></h4>
-  <ul class="list-inline tabs-underlined">
-    <li>
-      <%= link_to "Format Portrait", category_portrait_path(@category), class: "tab-underlined" %>
-    </li>
-    <li>
-      <%= link_to "Format Paysage", category_path(@category), class: "tab-underlined active" %>
-    </li>
-  </ul>
-  <div class="row">
-    <% @medias.each do |media| %>
-      <% media.photos.each do |photo| %>
-        <div class="col-xs-12 col-md-4 no-padding">
-          <%= link_to media_path(media) do %>
-            <% if media.category.name == "Vidéo" %>
-              <%= video_tag photo.url, class: "media-card" %>
-            <% else %>
-              <div class="media-card" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, width: 400;%>'); background-size: cover;">
-                <div class="media-overlay text-center">
-                  <span>
-                    <h4><%= media.title.capitalize %></h4>
-                    <p><%= media.artist.name.capitalize %></p>
-                  </span>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+<div class="min-height">
+  <div class="wrapper white-wrapper">
+    <div class="categories-bar">
+      <% @categories.each do |category| %>
+        <%= link_to category.name.upcase + 'S', category_path(category) %>
       <% end %>
-    <% end %>
+    </div>
+    <h4 id="categ-title">Découvrez nos <strong><%= @category.name + 's' %></strong></h4>
+    <ul class="list-inline tabs-underlined">
+      <li>
+        <%= link_to "Format Portrait", category_portrait_path(@category), class: "tab-underlined" %>
+      </li>
+      <li>
+        <%= link_to "Format Paysage", category_path(@category), class: "tab-underlined active" %>
+      </li>
+    </ul>
+    <div class="row">
+      <% @medias.each do |media| %>
+        <% media.photos.each do |photo| %>
+          <div class="col-xs-12 col-md-4 no-padding">
+            <%= link_to media_path(media) do %>
+              <% if media.category.name == "Vidéo" %>
+                <%= video_tag photo.url, class: "media-card" %>
+              <% else %>
+                <div class="media-card" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                  <div class="media-overlay text-center">
+                    <span>
+                      <h4><%= media.title.capitalize %></h4>
+                      <p><%= media.artist.name.capitalize %></p>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
