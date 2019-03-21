@@ -1,8 +1,4 @@
 <div class="form-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 50%), url(<%= asset_path 'background3.jpg' %>);">
-
-
-
-<div class="">
   <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-xs-12 col-sm-4">
@@ -61,13 +57,14 @@
           <%= link_to 'Voir tous les abonnements', subscription_types_path, class:'small-link' %>
         </div>
         <div>
-          <% if @user.photo == nil %>
-            <%= image_tag 'emptyavatag.jpg', class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
-          <% else %>
+          <% if @user.photo?%>
             <%= cl_image_tag @user.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+          <% else %>
+            <%= image_tag 'emptyavatar.jpg', class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
