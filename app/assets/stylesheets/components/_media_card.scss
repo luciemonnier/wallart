@@ -1,15 +1,11 @@
-.media-cards {
-  margin-top: 30px;
-}
-
 .media-card {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   height: 200px;
   border-radius: 2px;
   transition: all .5s ease-in-out;
-  margin: 10px;
   background-position: center;
   background-size: cover;
+  padding: 0px;
 }
 
 .media-card:first-child {
@@ -63,5 +59,8 @@
 
 .media-portrait {
   height: 350px !important;
-  margin-bottom: 10px;
+}
+
+.no-padding {
+  padding: 0px !important;
 }

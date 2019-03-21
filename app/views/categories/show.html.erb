@@ -17,7 +17,7 @@
     <div class="row">
       <% @medias.each do |media| %>
         <% media.photos.each do |photo| %>
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-md-4 no-padding">
             <%= link_to media_path(media) do %>
               <% if media.category.name == "Vidéo" %>
                 <%= video_tag photo.url, class: "media-card" %>
