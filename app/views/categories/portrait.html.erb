@@ -4,39 +4,37 @@
       <%= link_to category.name.upcase + 'S', category_path(category) %>
     <% end %>
   </div>
-  <div class="container">
-    <h4 id="categ-title">Découvrez nos <strong><%= @category.name + 's' %></strong></h4>
-    <ul class="list-inline tabs-underlined">
-      <li>
-        <%= link_to "Format Portrait", category_portrait_path(@category), class: "tab-underlined active" %>
-      </li>
-      <li>
-        <%= link_to "Format Paysage", category_path(@category), class: "tab-underlined" %>
-      </li>
-    </ul>
-    <div class="row">
-      <% if  @medias != [] %>
-        <% @medias.each do |media| %>
-          <% media.photos.each do |photo| %>
-            <div class="col-xs-12 col-md-3 no-padding">
-              <%= link_to media_path(media) do %>
-                <% if media.category.name == "Video" %>
-                  <%= video_tag photo.url, class: "media-portrait" %>
-                <% else %>
-                  <div class="media-portrait" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, width: 400;%>'); background-size: cover;">
-                    <div class="media-overlay text-center">
-                      <span>
-                        <h4><%= media.title.capitalize %></h4>
-                        <p><%= media.artist.name.capitalize %></p>
-                      </span>
-                    </div>
+  <h4 id="categ-title">Découvrez nos <strong><%= @category.name + 's' %></strong></h4>
+  <ul class="list-inline tabs-underlined">
+    <li>
+      <%= link_to "Format Portrait", category_portrait_path(@category), class: "tab-underlined active" %>
+    </li>
+    <li>
+      <%= link_to "Format Paysage", category_path(@category), class: "tab-underlined" %>
+    </li>
+  </ul>
+  <div class="row">
+    <% if  @medias != [] %>
+      <% @medias.each do |media| %>
+        <% media.photos.each do |photo| %>
+          <div class="col-xs-12 col-md-3 no-padding">
+            <%= link_to media_path(media) do %>
+              <% if media.category.name == "Video" %>
+                <%= video_tag photo.url, class: "media-portrait" %>
+              <% else %>
+                <div class="media-portrait" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                  <div class="media-overlay text-center">
+                    <span>
+                      <h4><%= media.title.capitalize %></h4>
+                      <p><%= media.artist.name.capitalize %></p>
+                    </span>
                   </div>
-                <% end %>
+                </div>
               <% end %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

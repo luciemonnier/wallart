@@ -4,41 +4,39 @@
       <%= link_to category.name.upcase + 'S', category_path(category) %>
     <% end %>
   </div>
-  <div class="container">
-    <div class="media-cards">
-      <h4>Nos résultats pour <strong><%= params[:query] %></strong></h4>
-      <div class="row">
-        <% @medias.each do |media| %>
-          <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
-                <% if media.category.name == "Vidéo" %>
-                <div class="video-card-group">
-                  <%= link_to media_path(media) do %>
-                    <%= video_tag media.photos.first.url, class: "media-card video-card"%>
-                    <div class="video-card-overlay text-center">
-                      <span>
-                          <h4><%= media.title.capitalize %></h4>
-                          <p><%= media.artist.name.capitalize %></p>
-                          <p><em><%= media.category.name %></em></p>
-                        </span>
-                    </div>
-                  <% end %>
-                </div>
-                <% else %>
-                  <%= link_to media_path(media) do %>
-                    <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
-                      <div class="media-overlay text-center">
-                        <span>
-                          <h4><%= media.title.capitalize %></h4>
-                          <p><%= media.artist.name.capitalize %></p>
-                          <p><em><%= media.category.name %></em></p>
-                        </span>
-                      </div>
-                    </div>
+  <div class="media-cards">
+    <h4>Nos résultats pour <strong><%= params[:query] %></strong></h4>
+    <div class="row">
+      <% @medias.each do |media| %>
+        <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+              <% if media.category.name == "Vidéo" %>
+              <div class="video-card-group">
+                <%= link_to media_path(media) do %>
+                  <%= video_tag media.photos.first.url, class: "media-card video-card"%>
+                  <div class="video-card-overlay text-center">
+                    <span>
+                        <h4><%= media.title.capitalize %></h4>
+                        <p><%= media.artist.name.capitalize %></p>
+                        <p><em><%= media.category.name %></em></p>
+                      </span>
+                  </div>
                 <% end %>
+              </div>
+              <% else %>
+                <%= link_to media_path(media) do %>
+                  <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                    <div class="media-overlay text-center">
+                      <span>
+                        <h4><%= media.title.capitalize %></h4>
+                        <p><%= media.artist.name.capitalize %></p>
+                        <p><em><%= media.category.name %></em></p>
+                      </span>
+                    </div>
+                  </div>
               <% end %>
-          </div>
-        <% end %>
-      </div>
+            <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% else %>
@@ -47,39 +45,37 @@
       <%= link_to category.name.upcase + 'S', category_path(category) %>
     <% end %>
   </div>
-<div class="container">
-    <div class="media-cards">
-      <div class="row">
-        <% @medias.each do |media| %>
-          <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
-                <% if media.category.name == "Vidéo" %>
-                <div class="video-card-group">
-                  <%= link_to media_path(media) do %>
-                    <%= video_tag media.photos.first.url, class: "media-card video-card"%>
-                    <div class="video-card-overlay text-center">
-                      <span>
-                          <h4><%= media.title.capitalize %></h4>
-                          <p><%= media.artist.name.capitalize %></p>
-                        </span>
-                    </div>
-                  <% end %>
-                </div>
-                <% else %>
-                  <%= link_to media_path(media) do %>
-                    <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
-                      <div class="media-overlay text-center">
-                        <span>
-                          <h4><%= media.title.capitalize %></h4>
-                          <p><%= media.artist.name.capitalize %></p>
-                          <p><em><%= media.category.name %></em></p>
-                        </span>
-                      </div>
-                    </div>
+  <div class="media-cards">
+    <div class="row">
+      <% @medias.each do |media| %>
+        <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+              <% if media.category.name == "Vidéo" %>
+              <div class="video-card-group">
+                <%= link_to media_path(media) do %>
+                  <%= video_tag media.photos.first.url, class: "media-card video-card"%>
+                  <div class="video-card-overlay text-center">
+                    <span>
+                        <h4><%= media.title.capitalize %></h4>
+                        <p><%= media.artist.name.capitalize %></p>
+                      </span>
+                  </div>
                 <% end %>
+              </div>
+              <% else %>
+                <%= link_to media_path(media) do %>
+                  <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                    <div class="media-overlay text-center">
+                      <span>
+                        <h4><%= media.title.capitalize %></h4>
+                        <p><%= media.artist.name.capitalize %></p>
+                        <p><em><%= media.category.name %></em></p>
+                      </span>
+                    </div>
+                  </div>
               <% end %>
-          </div>
-        <% end %>
-      </div>
+            <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
