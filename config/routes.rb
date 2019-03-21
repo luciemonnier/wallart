@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  get 'artists/index'
+  get 'artists/show'
   ActiveAdmin.routes(self)
   devise_for :users
   get '/', to: 'pages#home', as: 'home'
   get 'medias/portrait', to: 'medias#portrait', as: 'medias_portrait'
   resources 'medias', only: [:index, :show]
   resources 'rentals', only: [:create, :index, :update]
-  resources 'artists', only: [:show]
+  resources 'artists', only: [:show, :index]
   resources 'users', only: [:show, :edit, :update] do
     resources 'uploads', only: [:new, :create, :index]
   end
