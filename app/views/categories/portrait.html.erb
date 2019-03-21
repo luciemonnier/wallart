@@ -22,7 +22,7 @@
               <% if media.category.name == "Video" %>
                 <%= video_tag photo.url, class: "media-portrait" %>
               <% else %>
-                <div class="media-portrait" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                <div class="media-portrait" style="background-image: url('<%= cl_image_path photo.url, crop: :scale, height: 400;%>'); background-size: cover;">
                   <div class="media-overlay text-center">
                     <span>
                       <h4><%= media.title.capitalize %></h4>
