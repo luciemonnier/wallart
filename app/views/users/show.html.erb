@@ -37,7 +37,7 @@
               <div class="">
                 <div class="subscription-types">
                   <% i = 0 %>
-                  <% @subscription_types.each do |subscription_type| %>
+                  <% @subscription_types.reject {|subscription| subscription.level == 0 }.each do |subscription_type| %>
                     <%= link_to subscription_type_path(subscription_type) do %>
                       <div class="subscription-<%=i + 1%>">
                         <span class="text-center">

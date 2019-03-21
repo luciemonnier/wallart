@@ -6,7 +6,7 @@ class SubscriptionTypesController < ApplicationController
   end
 
   def index
-    @subscription_types = policy_scope(SubscriptionType)
+    @subscription_types = policy_scope(SubscriptionType).reject{|subscription| subscription.level == 0}
   end
 
 end

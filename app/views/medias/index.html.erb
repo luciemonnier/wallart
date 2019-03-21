@@ -56,7 +56,7 @@
   <div class="min-height">
     <div class="media-cards">
       <div class="row">
-        <% @medias.each do |media| %>
+        <% @medias.reverse.each do |media| %>
           <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
                 <% if media.category.name == "Vidéo" %>
                 <div class="video-card-group">
