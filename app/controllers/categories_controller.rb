@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def portrait
+    @categories = policy_scope(Category)
     @category = Category.find(params[:category_id])
     authorize @category
     @medias = Media.where(category: @category, portrait: true)
