@@ -1,0 +1,18 @@
+<div class="wrapper grey-wrapper">
+  <div class="container" id="profile-container">
+    <div class="fiche-ext">
+      <div>
+        <h4><strong>Un peu plus sur <%= @artist.name %></strong></h4>
+        <p class="artist-desc"><%= @artist.description %> </p>
+      </div>
+      <div>
+        <%= cl_image_tag @artist.photo, class:'profile-avatar', :transformation=>[ {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"fill"}, {:width=>200, :crop=>"scale"} ] %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

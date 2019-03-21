@@ -30,7 +30,7 @@
 
     <div class="fiche-int">
       <div>
-        <h4><strong>Un peu plus sur <%= @media.artist.name %></strong></h4>
+        <h4><strong>Un peu plus sur <%= link_to @media.artist.name, artist_path(@media.artist) %></strong></h4>
         <p class="artist-desc"><%= @media.artist.description.truncate(700, separator:" ") %> </p>
       </div>
       <div>

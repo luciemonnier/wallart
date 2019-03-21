@@ -87,7 +87,7 @@
   <div class="wrapper red-wrapper">
     <div class="container display-unavailable-medias">
       <h4>
-        Profitez de notre collection <%= @next_subscription %> en <strong><%= link_to "changeant d'abonnement", user_path(current_user) %></strong>
+        Profitez de notre collection <%= @next_subscription %> en <%= link_to "changeant d'abonnement", user_path(current_user), class: 'btn-ghost-white btn' %>
       </h4>
       <div class="category-row">
         <% @medias_unavailable.each do |media| %>
