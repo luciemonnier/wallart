@@ -5,8 +5,11 @@
     <% end %>
   </div>
       <% if @medias == [] %>
+      <div class="container">
         <h4>Désolés, nous n'avons pas d'oeuvres correspondant à votre recherche... <strong><%= link_to "Voir tout", medias_path %></strong></h4>
+      </div>
       <% else %>
+      <div class="min-height">
         <div class="media-cards">
           <h4 id="categ-title">Nos résultats pour <strong><%= params[:query] %></strong></h4>
           <div class="row">
@@ -41,6 +44,7 @@
               </div>
           <% end %>
         <% end %>
+      </div>
     </div>
   </div>
 <% else %>
@@ -49,45 +53,47 @@
       <%= link_to category.name.upcase + 'S', category_path(category) %>
     <% end %>
   </div>
-  <div class="media-cards">
-    <div class="row">
-      <% @medias.each do |media| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
-              <% if media.category.name == "Vidéo" %>
-              <div class="video-card-group">
-                <%= link_to media_path(media) do %>
-                  <%= video_tag media.photos.first.url, class: "media-card video-card"%>
-                  <div class="video-card-overlay text-center">
-                    <span>
-                        <h4><%= media.title.capitalize %></h4>
-                        <p><%= media.artist.name.capitalize %></p>
-                      </span>
-                  </div>
-                <% end %>
-              </div>
-              <% else %>
-                <%= link_to media_path(media) do %>
-                  <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
-                    <div class="media-overlay text-center">
+  <div class="min-height">
+    <div class="media-cards">
+      <div class="row">
+        <% @medias.each do |media| %>
+          <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+                <% if media.category.name == "Vidéo" %>
+                <div class="video-card-group">
+                  <%= link_to media_path(media) do %>
+                    <%= video_tag media.photos.first.url, class: "media-card video-card"%>
+                    <div class="video-card-overlay text-center">
                       <span>
-                        <h4><%= media.title.capitalize %></h4>
-                        <p><%= media.artist.name.capitalize %></p>
-                        <p><em><%= media.category.name %></em></p>
-                      </span>
+                          <h4><%= media.title.capitalize %></h4>
+                          <p><%= media.artist.name.capitalize %></p>
+                        </span>
                     </div>
-                  </div>
+                  <% end %>
+                </div>
+                <% else %>
+                  <%= link_to media_path(media) do %>
+                    <div class="media-card" style="background-image: url('<%= cl_image_path media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
+                      <div class="media-overlay text-center">
+                        <span>
+                          <h4><%= media.title.capitalize %></h4>
+                          <p><%= media.artist.name.capitalize %></p>
+                          <p><em><%= media.category.name %></em></p>
+                        </span>
+                      </div>
+                    </div>
+                <% end %>
               <% end %>
-            <% end %>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 <% end %>
 
 <% if current_user.subscription_type.level < 2 && @medias_unavailable != []%>
-  <div class="wrapper red-wrapper">
-    <div class="container display-unavailable-medias">
+  <div class="wrapper red-wrapper text-center">
+    <div class="display-unavailable-medias">
       <h4>
         Profitez de notre collection <%= @next_subscription %> en <%= link_to "changeant d'abonnement", user_path(current_user), class: 'btn-ghost-white btn' %>
       </h4>
