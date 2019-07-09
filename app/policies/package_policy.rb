@@ -1,7 +1,7 @@
-class RentalPolicy < ApplicationPolicy
+class PackagePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      scope.all
     end
   end
 
@@ -9,15 +9,7 @@ class RentalPolicy < ApplicationPolicy
     true
   end
 
-  def create?
-    true
-  end
-
-  def update?
-    user_admin_or_logged?
-  end
-
-  def display?
+  def show?
     true
   end
 

@@ -1,5 +1,12 @@
 class MediasController < ApplicationController
   def index
+    current_user.package.medias.each do |rental|
+      unless Rental.find_by(user: current_user, media: rental)
+        new_rental = Rental.new(user: current_user, media: rental, active: false)
+        authorize new_rental
+        new_rental.save
+      end
+    end
     @categories = Category.all
     if params[:query].present?
       @medias = policy_scope(Media).search_by_title_artist_category_and_description(params[:query])
@@ -17,10 +24,17 @@ class MediasController < ApplicationController
   end
 
   def show
+    current_user.package.medias.each do |rental|
+      unless Rental.find_by(user: current_user, media: rental)
+        new_rental = Rental.new(user: current_user, media: rental, active: false)
+        authorize new_rental
+        new_rental.save
+      end
+    end
     @categories = Category.all
     @media = Media.find(params[:id])
     authorize @media
-    @rental = Rental.new(media: @media, user: current_user)
+    @rental = Rental.where(media: @media, user: current_user)
   end
 
   private

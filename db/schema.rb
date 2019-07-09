@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_084630) do
+ActiveRecord::Schema.define(version: 2019_06_25_140111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 2019_03_20_084630) do
     t.index ["subscription_type_id"], name: "index_media_on_subscription_type_id"
   end
 
+  create_table "media_to_package_links", force: :cascade do |t|
+    t.bigint "media_id"
+    t.bigint "package_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["media_id"], name: "index_media_to_package_links_on_media_id"
+    t.index ["package_id"], name: "index_media_to_package_links_on_package_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "state"
     t.string "subscription_type_name"
@@ -68,6 +77,13 @@ ActiveRecord::Schema.define(version: 2019_03_20_084630) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -139,7 +155,9 @@ ActiveRecord::Schema.define(version: 2019_03_20_084630) do
     t.string "last_name"
     t.string "photo"
     t.bigint "subscription_type_id"
+    t.bigint "package_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["package_id"], name: "index_users_on_package_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["subscription_type_id"], name: "index_users_on_subscription_type_id"
   end
@@ -147,6 +165,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_084630) do
   add_foreign_key "media", "artists"
   add_foreign_key "media", "categories"
   add_foreign_key "media", "subscription_types"
+  add_foreign_key "media_to_package_links", "media", column: "media_id"
+  add_foreign_key "media_to_package_links", "packages"
   add_foreign_key "orders", "users"
   add_foreign_key "photos", "media", column: "media_id"
   add_foreign_key "rentals", "media", column: "media_id"
@@ -154,5 +174,6 @@ ActiveRecord::Schema.define(version: 2019_03_20_084630) do
   add_foreign_key "taggings", "media", column: "media_id"
   add_foreign_key "taggings", "tags"
   add_foreign_key "uploads", "users"
+  add_foreign_key "users", "packages"
   add_foreign_key "users", "subscription_types"
 end

@@ -1,39 +1,44 @@
 class RentalsController < ApplicationController
   def index
-    @active_rentals = policy_scope(Rental).where(active: true)
-    @former_rentals = policy_scope(Rental).where(active: false)
-    @uploads = Upload.where(user: current_user)
+    current_user.package.medias.each do |rental|
+      unless Rental.find_by(user: current_user, media: rental)
+        new_rental = Rental.new(user: current_user, media: rental, active: false)
+        authorize new_rental
+        new_rental.save
+      end
+    end
+    @active_rentals = policy_scope(Rental).where(user: current_user)
+    # @former_rentals = policy_scope(Rental).where(active: false)
+    # @uploads = Upload.where(user: current_user)
   end
 
   def create
     @rental = Rental.new(params_rental)
     authorize @rental
     @rental.active = true
-    if @rental.save
-      redirect_to rentals_path
-    end
+    redirect_to rentals_path if @rental.save
   end
 
   def update
     @rental = Rental.find(params[:id])
     @upload = Upload.new
     authorize @rental
-    if params[:active] == "false"
-      @rental.active = false
-      @rental.display = false
-      @rental.display = false
-    end
+    # if params[:active] == "false"
+    #   @rental.active = false
+    #   @rental.display = false
+    #   @rental.display = false
+    # end
     if params[:display] == "true"
       Rental.where(user: current_user, display: true).each do |rental|
         rental.display = false
         rental.save
       end
-      Upload.where(user: current_user, display: true).each do |upload|
-        upload.display = false
-        upload.save
-      end
       @rental.display = true
       @is_rental = true
+      # Upload.where(user: current_user, display: true).each do |upload|
+      #   upload.display = false
+      #   upload.save
+      # end
     end
     @rental.save
     broadcast_rental(@rental, @upload)
@@ -41,18 +46,18 @@ class RentalsController < ApplicationController
   end
 
   def display
-    @upload = Upload.where(user: current_user, display: true).first
-    if Rental.where(user: current_user, display: true).first.nil? && !@upload.nil?
-      @rental = Rental.new
-      @url = @upload.photo
-      @is_rental = false
-      @category = "Upload"
-    elsif @upload.nil? && Rental.where(user: current_user, display: true).first.nil?
+    # @upload = Upload.where(user: current_user, display: true).first
+    # if Rental.where(user: current_user, display: true).first.nil? && !@upload.nil?
+    #   @rental = Rental.new
+    #   @url = @upload.photo
+    #   @is_rental = false
+    #   @category = "Upload"
+    if Rental.where(user: current_user, display: true).first.nil? #remplacer par elsif si upload nécessaire
       @rental = Rental.new
       @url = 'https://res.cloudinary.com/dqkmjxwwb/image/upload/v1553093701/mznyifv2lxjyub3ja7hy.jpg'
       @is_rental = nil
       @category = "Photographie"
-    elsif !Rental.where(user: current_user, display: true).first.nil?
+    else #!Rental.where(user: current_user, display: true).first.nil?
       @rental = Rental.where(user: current_user, display: true).first
       @url = @rental.media.photos.first.url
       @is_rental = true

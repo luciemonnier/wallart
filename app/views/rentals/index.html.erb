@@ -1,82 +1,103 @@
-<div class="container">
-  <h4 class='categ-title'>Ma Collection</h4>
-    <div class="rental-cards">
-      <div class="row">
-        <% @active_rentals.each do |rental| %>
-            <div class="col-md-6 col-xs-12">
-              <%= link_to media_path(rental.media_id) do %>
-                <% if rental.media.category.name == "Vidéo"  %>
-                  <%= video_tag rental.media.photos.first.url, class: "full rental card-rental", controls: true, loop: true, autoplay: true %>
-                <% else %>
-                  <div class="full-rental card-rental" style="background-image: url('<%= cl_image_path rental.media.photos.first.url, width: 400; %>'); background-size: cover;">
-                  </div>
-                <% end %>
-              <% end %>
-              <div class="rental-btn-group">
-                <%= link_to "-", rental_path(rental, active: false), method: :patch, class: 'btn rental-round-wall' %>
-                <% if rental.display == false %>
-                  <%= link_to "Afficher sur mon cadre", rental_path(rental, display: true), method: :patch, class: 'btn small-wall' %>
-                <% else %>
-                  <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre est déjà en cours d'affichage">
-                    <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Afficher sur mon cadre</button>
+<h4 class='categ-title'>Ma Collection</h4>
+<div class="rental-cards">
+  <div class="row">
+    <% @active_rentals.each do |rental| %>
+    <div class="col-xs-12 col-sm-6 col-md-4 no-padding">
+        <% if rental.media.category.name == "Vidéo" %>
+          <div class="video-card-group">
+            <%= link_to media_path(rental.media) do %>
+              <%= video_tag rental.media.photos.first.url, class: "media-card video-card"%>
+              <div class="video-card-overlay text-center">
+                <span>
+                    <h4><%= rental.media.title.capitalize %></h4>
+                    <p><%= rental.media.artist.name.capitalize %></p>
+                    <p><em><%= rental.media.category.name %></em></p>
                   </span>
-                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <%= link_to media_path(rental.media) do %>
+            <div class="media-card" style="background-image: url('<%= cl_image_path rental.media.photos.first.url, crop: :scale, width: 400;%>'); background-size: cover;">
+              <div class="media-overlay text-center">
+                <span>
+                  <h4><%= rental.media.title.capitalize %></h4>
+                  <p><%= rental.media.artist.name.capitalize %></p>
+                  <p><em><%= rental.media.category.name %></em></p>
+                </span>
               </div>
             </div>
-        <% end %>
-          <% (current_user.subscription_type.rentals_number - @active_rentals.size).times do %>
-            <div class="col-md-6 col-xs-12">
-              <%= link_to medias_path do %>
-                <div class="empty-rental card-rental" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 50%), url('<%= cl_image_path Photo.all.sample.url, width: 400; %>'); background-size: cover;">
-                  <div class="plus">
-                    <i class="fas fa-plus"></i>
-                  </div>
-                </div>
-              <% end %>
-            </div>
           <% end %>
-    </div>
-    <div class="user-uploads">
-      <h4 class='categ-title'>Mes photos  <%= link_to 'Voir tout', user_uploads_path(current_user), id: 'link-to-uploads' %></h4>
-      <% if @uploads != [] %>
+        <% end %>
+        <div class="rental-btn-group">
+          <%#= link_to "-", rental_path(rental, active: false), method: :patch, class: 'btn rental-round-wall' %>
+          <% if rental.display == false %>
+            <%= link_to "Afficher sur mon cadre", rental_path(rental, display: true), method: :patch, class: 'btn small-wall' %>
+          <% else %>
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre est déjà en cours d'affichage">
+              <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Afficher sur mon cadre</button>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%#(current_user.subscription_type.rentals_number - @active_rentals.size).times do %>
+<!--         <div class="col-md-6 col-xs-12">
+            <%#= link_to medias_path do %>
+              <div class="empty-rental card-rental" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 50%), url('<%#= cl_image_path Photo.all.sample.url, width: 400; %>'); background-size: cover;">
+                <div class="plus">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+            <%# end %>
+          </div>
+        <%# end %> -->
+    <!-- </div> -->
+    <!-- <div class="user-uploads">
+      <h4 class='categ-title'>Mes photos  <%#= link_to 'Voir tout', user_uploads_path(current_user), id: 'link-to-uploads' %></h4>
+      <%# if @uploads != [] %>
         <div class="upload-cards">
           <div class="row">
-            <% @uploads.last(3).each do |upload| %>
+            <%# @uploads.last(3).each do |upload| %>
               <div class="col-sm-6 col-md-4">
                 <div class="media-padding">
                   <div class="upload-card">
-                    <div class="upload-card-top" style="background-image: url('<%= cl_image_path upload.photo %>'); background-size: cover;">
+                    <div class="upload-card-top" style="background-image: url('<%#= cl_image_path upload.photo %>'); background-size: cover;">
                     </div>
                     <div class="upload-card-bottom">
                       <span>
-                      <p><strong><%= upload.name.capitalize %></strong></p>
+                      <p><strong><%#= upload.name.capitalize %></strong></p>
                       </span>
                       <span>
                       <div class="upload-link-list">
-                        <%= link_to "Afficher", upload_path(upload), method: :patch, class: 'upload-link' %>
-                        <%= link_to "Supprimer", upload_path(upload), method: :delete, class: 'upload-link' %>
+                        <%#= link_to "Afficher", upload_path(upload), method: :patch, class: 'upload-link' %>
+                        <%#= link_to "Supprimer", upload_path(upload), method: :delete, class: 'upload-link' %>
                       </div>
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-            <% end %>
+            <%# end %>
           </div>
-        </div>
-      <% end %>
-      <%= link_to 'Télécharger une photo', new_user_upload_path(current_user), class: 'btn btn-wall' %>
-    </div>
-  </div>
-  <% if current_user.rentals.where(active: false) != [] %>
+        </div> -->
+      <%# end %>
+      <%#= link_to 'Télécharger une photo', new_user_upload_path(current_user), class: 'btn btn-wall' %>
+<!--     </div>
+  </div> -->
+ <!--  <%# if current_user.rentals.where(active: false) != [] %>
     <h4 id='categ-title'>Mes précédentes locations</h4>
     <div class="category-row">
-      <% @former_rentals.each do |rental| %>
-        <%= link_to media_path(rental.media) do %>
-          <div class="media-card" style="background-image: url('<%= image_path rental.media.photos.first.url, crop: :fill;%>'); background-size: cover;">
+      <%# @former_rentals.each do |rental| %>
+        <%#= link_to media_path(rental.media) do %>
+          <div class="media-card" style="background-image: url('<%#= image_path rental.media.photos.first.url, crop: :fill;%>'); background-size: cover;">
           </div>
-        <% end %>
-      <% end %>
+        <%# end %>
+      <%# end %>
     </div>
-  <% end %>
-</div>
+  <%# end %> -->
+<!-- </div>
+ -->
+
