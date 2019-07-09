@@ -2,19 +2,19 @@
 
   <div class="container">
     <div class="order-card">
-      <h1><%= @subscription_type.name.capitalize %></h1>
+      <h1><%= @package.name.capitalize %></h1>
       <br>
-      <h4>Price: <%= @subscription_type.price %>€/mois</h4>
-      <p>Profitez de toute notre collection <%= @subscription_type.name.capitalize %> en souscrivant à notre abonnement</p>
+      <h4>Price: <%= @package.price %>€/mois</h4>
+      <p>Profitez de toute notre collection <%= @package.name.capitalize %> en souscrivant à notre abonnement</p>
       <div class="category-row">
-        <% @subscription_medias.each do |media| %>
+        <% @package_medias.each do |media| %>
           <div class="media-padding">
             <%= cl_image_tag media.photos.first.url, quality: :auto, width: 330, crop: :fill, class: 'media-card' %>
           </div>
         <% end %>
       </div>
       <%= form_tag orders_path do %>
-        <%= hidden_field_tag 'subscription_type_id', @subscription_type.id %>
+        <%= hidden_field_tag 'package_id', @package.id %>
         <%= submit_tag 'Purchase', class: 'btn btn-wall' %>
       <% end %>
     </div>

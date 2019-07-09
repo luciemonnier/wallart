@@ -5,18 +5,18 @@
     <div class="col-xs-12 col-sm-4">
       <div class="fiche">
         <div>
-            <h4>Votre abonnement actuel est l'abonnement <strong><%= current_user.subscription_type.name %></strong></h4>
-            <p>Choisissez l'abonnement qui vous convient</p>
+            <h4>Votre package actuel est l'abonnement <strong><%= @user_package.name %></strong></h4>
+            <p>Découvrez les autres pachages ONE.O.1</p>
             <div class="subscription-types">
               <% i = 0 %>
               <div class="subscription-types">
                 <% i = 0 %>
-                <% @subscription_types.each do |subscription_type| %>
-                  <%= link_to subscription_type_path(subscription_type) do %>
+                <% @all_packages.each do |package| %>
+                  <%= link_to package_path(package) do %>
                     <div class="subscription-<%=i + 1%>">
                       <span class="text-center">
-                      <p><strong><%= subscription_type.name %></strong></p>
-                      <p><%= subscription_type.price %>€/mois</p>
+                      <p><strong><%= package.name %></strong></p>
+                      <p><%= package.price / 100 %>€/mois</p>
                       </span>
                     </div>
                     <% i += 1 %>

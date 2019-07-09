@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :uploads, dependent: :destroy
   has_many :orders, dependent: :destroy
   belongs_to :subscription_type, optional: true
+  belongs_to :package
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

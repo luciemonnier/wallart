@@ -23,6 +23,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_package
+    @package = current_user.package
+  end
+
   private
 
   def params_user

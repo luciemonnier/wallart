@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   end
   get 'rentals/display', to: 'rentals#display', as: 'display'
   patch 'rentals/:id', to: 'rentals#send', as: 'send'
+  resources 'packages', only: [:index, :show]
 end

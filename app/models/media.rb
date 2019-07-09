@@ -8,6 +8,8 @@ class Media < ApplicationRecord
   has_many :rentals, dependent: :destroy
   belongs_to :subscription_type
   has_many :tags, through: :taggings
+  has_many :media_to_package_links
+  has_many :packages, through: :media_to_package_links
 
   include PgSearch
   pg_search_scope :search_by_title_artist_category_and_description,

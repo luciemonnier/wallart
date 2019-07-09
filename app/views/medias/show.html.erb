@@ -42,32 +42,40 @@
       <span>
         <br>
         <h4 class="options-title"><strong>Vos options</strong></h4>
-        <% if current_user.rentals.where(media: @media, active: true) != [] %>
+       <!--  <#% if current_user.rentals.where(media: @media, active: true) != [] %>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre fait déjà partie de votre collection!">
             <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
-          </span>
-        <% elsif current_user.rentals.where(active: true).size >= current_user.subscription_type.rentals_number %>
+          </span> -->
+<!--         <#% elsif current_user.rentals.where(active: true).size >= current_user.subscription_type.rentals_number %>
           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre collection est pleine">
             <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
+          </span> -->
+        <% if !@media.packages.include?(current_user.package) %>
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre ne fait pas partie de votre package!">
+            <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Afficher l'oeuvre</button>
+          <%= link_to "Découvrir les autres packages", packages_path %>
           </span>
-        <% elsif current_user.subscription_type.level < @media.subscription_type.level %>
-          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre abonnement ne vous permet pas de profiter de cette oeuvre">
-            <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Ajouter</button>
-          <%= link_to "Changer d'abonnement", subscription_types_path %>
+        <%# else %>
+          <%#= simple_form_for @rental do |f| %>
+            <%#= f.hidden_field :media_id %>
+            <%#= f.hidden_field :user_id %>
+            <%#= f.button :submit, 'Ajouter', class: 'btn small-wall' %>
+          <%# end %>
+        <% elsif @rental.display %>
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cette oeuvre est déjà en cours d'affichage">
+            <button class="btn small-wall" style="pointer-events: none;" type="button" disabled>Afficher l'oeuvre</button>
           </span>
         <% else %>
-          <%= simple_form_for @rental do |f| %>
-            <%= f.hidden_field :media_id %>
-            <%= f.hidden_field :user_id %>
-            <%= f.button :submit, 'Ajouter', class: 'btn small-wall' %>
-          <% end %>
+          <span>
+            <%= link_to "Afficher sur mon cadre", rental_path(@rental, display: true), method: :patch, class: 'btn small-wall' %>
+          </span>
         <% end %>
-        <% if current_user.rentals.where(media: @media, active: true) != [] %>
-        <span>
-          <%= link_to "Retirer", rental_path(current_user.rentals.where(media: @media, active: true).first), method: :patch, class: 'btn small-wall' %>
-          <%= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
-        </span>
-        <% end %>
+        <%# if current_user.rentals.where(media: @media, active: true) != [] %>
+        <!-- <span>
+          <%#= link_to "Retirer", rental_path(current_user.rentals.where(media: @media, active: true).first), method: :patch, class: 'btn small-wall' %>
+          <%#= link_to "Afficher sur mon cadre", '#', class: 'btn small-wall' %>
+        </span> -->
+        <%# end %>
       </span>
     </div>
 
